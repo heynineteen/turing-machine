@@ -1,0 +1,4 @@
+﻿b -> any -> P0, R -> c;
+c -> any -> R     -> e;
+e -> any -> P1, R -> f;
+f -> any -> R     -> b;

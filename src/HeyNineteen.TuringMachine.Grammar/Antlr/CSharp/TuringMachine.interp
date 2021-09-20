@@ -8,8 +8,8 @@ null
 'E'
 'P'
 'none'
+'notNone'
 'any'
-'any-none'
 null
 null
 null
@@ -35,7 +35,7 @@ WS
 rule names:
 file
 machine
-line
+step
 finalMConfiguration
 operations
 operation

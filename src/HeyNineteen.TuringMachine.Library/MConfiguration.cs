@@ -95,19 +95,19 @@ namespace HeyNineteen.TuringMachine.Library
 
     public class Machine
     {
-        private readonly List<Line> _lines;
+        private readonly List<Step> _steps;
         private readonly Tape _tape = new();
+        private readonly CompleteConfiguration _completeConfiguration;
         private MConfiguration _currentMConfiguration;
-        private CompleteConfiguration _completeConfiguration;
 
-        public Machine(IEnumerable<Line> lines)
+        public Machine(IEnumerable<Step> steps)
         {
-            _lines = lines?.ToList() ?? throw new ArgumentNullException(nameof(lines));
+            _steps = steps?.ToList() ?? throw new ArgumentNullException(nameof(steps));
 
-            if (!_lines.Any())
-                throw new ArgumentException("Sequence must contain at least one element.", nameof(lines));
+            if (!_steps.Any())
+                throw new ArgumentException("Sequence must contain at least one element.", nameof(steps));
 
-            _currentMConfiguration = _lines[0].ConfigurationSpecification.MConfiguration;
+            _currentMConfiguration = _steps[0].ConfigurationSpecification.MConfiguration;
             _completeConfiguration = new CompleteConfiguration(_tape, _currentMConfiguration);
         }
 
@@ -115,26 +115,26 @@ namespace HeyNineteen.TuringMachine.Library
         {
             var configuration = new Configuration(_currentMConfiguration, _tape.Read());
 
-            var line = _lines.FirstOrDefault(line => line.ConfigurationSpecification.IsSatisfiedBy(configuration));
+            var step = _steps.FirstOrDefault(line => line.ConfigurationSpecification.IsSatisfiedBy(configuration));
 
-            if (line == null)
+            if (step == null)
                 throw new UnrecognisedConfigurationException(configuration);
 
-            foreach (var operation in line.Behavior.Operations)
+            foreach (var operation in step.Behavior.Operations)
             {
                 operation.Execute(_tape);
             }
 
-            _currentMConfiguration = line.Behavior.FinalMConfiguration;
+            _currentMConfiguration = step.Behavior.FinalMConfiguration;
         }
 
         public string State => _completeConfiguration.With(_currentMConfiguration).ToString();
     }
 
     [DebuggerDisplay("{ConfigurationSpecification}")]
-    public class Line
+    public class Step
     {
-        public Line(ConfigurationSpecification configurationSpecification, Behavior behavior)
+        public Step(ConfigurationSpecification configurationSpecification, Behavior behavior)
         {
             ConfigurationSpecification = configurationSpecification ?? throw new ArgumentNullException(nameof( configurationSpecification ) );
             Behavior = behavior ?? throw new ArgumentNullException(nameof(behavior));
@@ -223,13 +223,13 @@ namespace HeyNineteen.TuringMachine.Library
     [DebuggerDisplay( "{MConfiguration.Value} : {Symbol}" )]
     public class ConfigurationSpecification
     {
-        public ConfigurationSpecification(MConfiguration mConfiguration, char? symbol = null)
+        public ConfigurationSpecification(MConfiguration mConfiguration, SymbolSpecification symbolSpecification)
         {
             MConfiguration = mConfiguration ?? throw new ArgumentNullException(nameof(mConfiguration));
-            Symbol = symbol;
+            SymbolSpecification = symbolSpecification;
         }
 
-        public char? Symbol { get; }
+        public SymbolSpecification SymbolSpecification { get; }
 
         public MConfiguration MConfiguration { get; }
 
@@ -237,22 +237,69 @@ namespace HeyNineteen.TuringMachine.Library
         {
             _ = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
-            if (configuration.MConfiguration != MConfiguration)
-                return false;
+            return configuration.MConfiguration == MConfiguration
+                && SymbolSpecification.IsSatisfiedBy(configuration.Symbol);
+        }
+    }
 
-            if (Symbol == configuration.Symbol)
+    public class SymbolSpecification
+    {
+        public SymbolSpecification(SymbolSpecificationWildcard wildcard)
+        {
+            Wildcard = wildcard ?? throw new ArgumentNullException(nameof(wildcard));
+        }
+
+        public SymbolSpecification(char symbol)
+        {
+            Symbol = symbol;
+        }
+
+        public SymbolSpecificationWildcard Wildcard { get; }
+
+        public char? Symbol { get; }
+
+        public bool IsWildcard => Wildcard != null;
+
+        public bool IsSatisfiedBy(char? symbol)
+        {
+            if (!IsWildcard)
+                return Symbol == symbol;
+
+            if (Wildcard == SymbolSpecificationWildcard.Any)
                 return true;
 
-            if (Symbol == null && configuration.Symbol == null)
-                return true;
+            if (Wildcard == SymbolSpecificationWildcard.NotNone)
+                return symbol != null;
 
-            if (Symbol == '?' && configuration.Symbol != null)
-                return true;
-
-            if (Symbol == '*')
-                return true;
+            if (Wildcard == SymbolSpecificationWildcard.None)
+                return symbol == null;
 
             return false;
+        }
+
+        public static implicit operator SymbolSpecification(SymbolSpecificationWildcard wildcard) => new(wildcard);
+
+        public static implicit operator SymbolSpecification(char symbol) => new(symbol);
+    }
+
+    public class SymbolSpecificationWildcard
+    {
+        public static SymbolSpecificationWildcard None = new SymbolSpecificationWildcard("None");
+        public static SymbolSpecificationWildcard NotNone = new SymbolSpecificationWildcard( "NotNone" );
+        public static SymbolSpecificationWildcard Any = new SymbolSpecificationWildcard( "Any" );
+
+        private static readonly SymbolSpecificationWildcard[] All = new SymbolSpecificationWildcard[] {None, NotNone, Any};
+
+        public string Name { get; }
+
+        private SymbolSpecificationWildcard(string name)
+        {
+            Name = name;
+        }
+
+        public static SymbolSpecificationWildcard FromName( string name)
+        {
+            return All.FirstOrDefault(s => s.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
         }
     }
 

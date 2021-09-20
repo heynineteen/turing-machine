@@ -55,7 +55,7 @@ public partial class TuringMachineBaseVisitor<Result> : AbstractParseTreeVisitor
 	/// <return>The visitor result.</return>
 	public virtual Result VisitMachine([NotNull] TuringMachineParser.MachineContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TuringMachineParser.line"/>.
+	/// Visit a parse tree produced by <see cref="TuringMachineParser.step"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -63,7 +63,7 @@ public partial class TuringMachineBaseVisitor<Result> : AbstractParseTreeVisitor
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitLine([NotNull] TuringMachineParser.LineContext context) { return VisitChildren(context); }
+	public virtual Result VisitStep([NotNull] TuringMachineParser.StepContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TuringMachineParser.finalMConfiguration"/>.
 	/// <para>
@@ -135,7 +135,7 @@ public partial class TuringMachineBaseVisitor<Result> : AbstractParseTreeVisitor
 	/// <return>The visitor result.</return>
 	public virtual Result VisitPrint([NotNull] TuringMachineParser.PrintContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>None</c>
+	/// Visit a parse tree produced by the <c>NoneSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
@@ -144,9 +144,9 @@ public partial class TuringMachineBaseVisitor<Result> : AbstractParseTreeVisitor
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNone([NotNull] TuringMachineParser.NoneContext context) { return VisitChildren(context); }
+	public virtual Result VisitNoneSymbolSpecification([NotNull] TuringMachineParser.NoneSymbolSpecificationContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>Any</c>
+	/// Visit a parse tree produced by the <c>NotNoneSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
@@ -155,9 +155,9 @@ public partial class TuringMachineBaseVisitor<Result> : AbstractParseTreeVisitor
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAny([NotNull] TuringMachineParser.AnyContext context) { return VisitChildren(context); }
+	public virtual Result VisitNotNoneSymbolSpecification([NotNull] TuringMachineParser.NotNoneSymbolSpecificationContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>AnyNone</c>
+	/// Visit a parse tree produced by the <c>AnySymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
@@ -166,9 +166,9 @@ public partial class TuringMachineBaseVisitor<Result> : AbstractParseTreeVisitor
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAnyNone([NotNull] TuringMachineParser.AnyNoneContext context) { return VisitChildren(context); }
+	public virtual Result VisitAnySymbolSpecification([NotNull] TuringMachineParser.AnySymbolSpecificationContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>Symbol</c>
+	/// Visit a parse tree produced by the <c>SymbolSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
@@ -177,7 +177,7 @@ public partial class TuringMachineBaseVisitor<Result> : AbstractParseTreeVisitor
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitSymbol([NotNull] TuringMachineParser.SymbolContext context) { return VisitChildren(context); }
+	public virtual Result VisitSymbolSymbolSpecification([NotNull] TuringMachineParser.SymbolSymbolSpecificationContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TuringMachineParser.mConfiguration"/>.
 	/// <para>

@@ -51,15 +51,15 @@ public interface ITuringMachineListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitMachine([NotNull] TuringMachineParser.MachineContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="TuringMachineParser.line"/>.
+	/// Enter a parse tree produced by <see cref="TuringMachineParser.step"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterLine([NotNull] TuringMachineParser.LineContext context);
+	void EnterStep([NotNull] TuringMachineParser.StepContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="TuringMachineParser.line"/>.
+	/// Exit a parse tree produced by <see cref="TuringMachineParser.step"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitLine([NotNull] TuringMachineParser.LineContext context);
+	void ExitStep([NotNull] TuringMachineParser.StepContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="TuringMachineParser.finalMConfiguration"/>.
 	/// </summary>
@@ -131,53 +131,53 @@ public interface ITuringMachineListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitPrint([NotNull] TuringMachineParser.PrintContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>None</c>
+	/// Enter a parse tree produced by the <c>NoneSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNone([NotNull] TuringMachineParser.NoneContext context);
+	void EnterNoneSymbolSpecification([NotNull] TuringMachineParser.NoneSymbolSpecificationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>None</c>
+	/// Exit a parse tree produced by the <c>NoneSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNone([NotNull] TuringMachineParser.NoneContext context);
+	void ExitNoneSymbolSpecification([NotNull] TuringMachineParser.NoneSymbolSpecificationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>Any</c>
+	/// Enter a parse tree produced by the <c>NotNoneSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAny([NotNull] TuringMachineParser.AnyContext context);
+	void EnterNotNoneSymbolSpecification([NotNull] TuringMachineParser.NotNoneSymbolSpecificationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>Any</c>
+	/// Exit a parse tree produced by the <c>NotNoneSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAny([NotNull] TuringMachineParser.AnyContext context);
+	void ExitNotNoneSymbolSpecification([NotNull] TuringMachineParser.NotNoneSymbolSpecificationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>AnyNone</c>
+	/// Enter a parse tree produced by the <c>AnySymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAnyNone([NotNull] TuringMachineParser.AnyNoneContext context);
+	void EnterAnySymbolSpecification([NotNull] TuringMachineParser.AnySymbolSpecificationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>AnyNone</c>
+	/// Exit a parse tree produced by the <c>AnySymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAnyNone([NotNull] TuringMachineParser.AnyNoneContext context);
+	void ExitAnySymbolSpecification([NotNull] TuringMachineParser.AnySymbolSpecificationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>Symbol</c>
+	/// Enter a parse tree produced by the <c>SymbolSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterSymbol([NotNull] TuringMachineParser.SymbolContext context);
+	void EnterSymbolSymbolSpecification([NotNull] TuringMachineParser.SymbolSymbolSpecificationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>Symbol</c>
+	/// Exit a parse tree produced by the <c>SymbolSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitSymbol([NotNull] TuringMachineParser.SymbolContext context);
+	void ExitSymbolSymbolSpecification([NotNull] TuringMachineParser.SymbolSymbolSpecificationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="TuringMachineParser.mConfiguration"/>.
 	/// </summary>

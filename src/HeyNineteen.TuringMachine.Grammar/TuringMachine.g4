@@ -5,10 +5,10 @@ file
     ;
     
 machine
-    : line (line)*
+    : step (step)*
     ;
     
-line
+step
     : mConfiguration '->' symbolSpecification '->' operations '->' finalMConfiguration ';'
     ;
     
@@ -44,10 +44,10 @@ print
     ;
     
 symbolSpecification
-    : 'none'       #None
-    | 'any'        #Any 
-    | 'any-none'   #AnyNone
-    | VALID_CHAR   #Symbol
+    : 'none'        #NoneSymbolSpecification
+    | 'notNone'     #NotNoneSymbolSpecification
+    | 'any'         #AnySymbolSpecification
+    | VALID_CHAR    #SymbolSymbolSpecification
     ;
     
 mConfiguration

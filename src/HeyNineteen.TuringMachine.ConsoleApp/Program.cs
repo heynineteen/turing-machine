@@ -29,7 +29,7 @@ namespace HeyNineteen.TuringMachine.ConsoleApp
         public void Run(string[] args)
         {
             // p.81 compute alternate 0s and 1s
-            //var lines = new Line[]
+            //var lines = new Step[]
             //{
             //    new (new ConfigurationSpecification("b", '*'), new Behavior(new Operation[]{new Print('0'), new MoveRight()}, "c")),
             //    new (new ConfigurationSpecification("c", '*'), new Behavior(new Operation[]{new MoveRight()}, "e")),
@@ -38,7 +38,7 @@ namespace HeyNineteen.TuringMachine.ConsoleApp
             //};
 
             //// p.83 compute 1/4
-            //var lines = new Line[]
+            //var lines = new Step[]
             //{
             //    new (new ConfigurationSpecification("b", '*'), new Behavior(new Operation[]{new Print('0'), new MoveRight()}, "c")),
             //    new (new ConfigurationSpecification("c", '*'), new Behavior(new Operation[]{new MoveRight()}, "d")),
@@ -48,14 +48,14 @@ namespace HeyNineteen.TuringMachine.ConsoleApp
             //};
 
             // p.84 compute alternate 0s and 1s simpler
-            var lines = new Line[]
+            var steps = new Step[]
             {
-                new (new ConfigurationSpecification("b"), new Behavior(new Operation[]{new Print('0')}, "b")),
+                new (new ConfigurationSpecification("b", SymbolSpecificationWildcard.Any), new Behavior(new Operation[]{new Print('0')}, "b")),
                 new (new ConfigurationSpecification("b", '0'), new Behavior(new Operation[]{new MoveRight(), new MoveRight(), new Print('1')}, "b")),
                 new (new ConfigurationSpecification("b", '1'), new Behavior(new Operation[]{new MoveRight(), new MoveRight(), new Print('0')}, "b")),
             };
 
-            var machine = new Machine(lines);
+            var machine = new Machine(steps);
 
             while (true)
             {

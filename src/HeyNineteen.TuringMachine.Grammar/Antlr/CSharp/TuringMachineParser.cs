@@ -39,17 +39,17 @@ public partial class TuringMachineParser : Parser {
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, VALID_CHAR=11, BLOCK_COMMENT=12, LINE_COMMENT=13, WS=14;
 	public const int
-		RULE_file = 0, RULE_machine = 1, RULE_line = 2, RULE_finalMConfiguration = 3, 
+		RULE_file = 0, RULE_machine = 1, RULE_step = 2, RULE_finalMConfiguration = 3, 
 		RULE_operations = 4, RULE_operation = 5, RULE_moveLeft = 6, RULE_moveRight = 7, 
 		RULE_erase = 8, RULE_print = 9, RULE_symbolSpecification = 10, RULE_mConfiguration = 11;
 	public static readonly string[] ruleNames = {
-		"file", "machine", "line", "finalMConfiguration", "operations", "operation", 
+		"file", "machine", "step", "finalMConfiguration", "operations", "operation", 
 		"moveLeft", "moveRight", "erase", "print", "symbolSpecification", "mConfiguration"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'->'", "';'", "','", "'L'", "'R'", "'E'", "'P'", "'none'", "'any'", 
-		"'any-none'"
+		null, "'->'", "';'", "','", "'L'", "'R'", "'E'", "'P'", "'none'", "'notNone'", 
+		"'any'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, null, null, null, null, null, null, null, null, null, null, "VALID_CHAR", 
@@ -140,11 +140,11 @@ public partial class TuringMachineParser : Parser {
 	}
 
 	public partial class MachineContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public LineContext[] line() {
-			return GetRuleContexts<LineContext>();
+		[System.Diagnostics.DebuggerNonUserCode] public StepContext[] step() {
+			return GetRuleContexts<StepContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public LineContext line(int i) {
-			return GetRuleContext<LineContext>(i);
+		[System.Diagnostics.DebuggerNonUserCode] public StepContext step(int i) {
+			return GetRuleContext<StepContext>(i);
 		}
 		public MachineContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -178,7 +178,7 @@ public partial class TuringMachineParser : Parser {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 27;
-			line();
+			step();
 			State = 31;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
@@ -186,7 +186,7 @@ public partial class TuringMachineParser : Parser {
 				{
 				{
 				State = 28;
-				line();
+				step();
 				}
 				}
 				State = 33;
@@ -206,7 +206,7 @@ public partial class TuringMachineParser : Parser {
 		return _localctx;
 	}
 
-	public partial class LineContext : ParserRuleContext {
+	public partial class StepContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public MConfigurationContext mConfiguration() {
 			return GetRuleContext<MConfigurationContext>(0);
 		}
@@ -219,33 +219,33 @@ public partial class TuringMachineParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public FinalMConfigurationContext finalMConfiguration() {
 			return GetRuleContext<FinalMConfigurationContext>(0);
 		}
-		public LineContext(ParserRuleContext parent, int invokingState)
+		public StepContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_line; } }
+		public override int RuleIndex { get { return RULE_step; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			ITuringMachineListener typedListener = listener as ITuringMachineListener;
-			if (typedListener != null) typedListener.EnterLine(this);
+			if (typedListener != null) typedListener.EnterStep(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			ITuringMachineListener typedListener = listener as ITuringMachineListener;
-			if (typedListener != null) typedListener.ExitLine(this);
+			if (typedListener != null) typedListener.ExitStep(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITuringMachineVisitor<TResult> typedVisitor = visitor as ITuringMachineVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLine(this);
+			if (typedVisitor != null) return typedVisitor.VisitStep(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public LineContext line() {
-		LineContext _localctx = new LineContext(Context, State);
-		EnterRule(_localctx, 4, RULE_line);
+	public StepContext step() {
+		StepContext _localctx = new StepContext(Context, State);
+		EnterRule(_localctx, 4, RULE_step);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
@@ -696,80 +696,80 @@ public partial class TuringMachineParser : Parser {
 			base.CopyFrom(context);
 		}
 	}
-	public partial class SymbolContext : SymbolSpecificationContext {
+	public partial class NotNoneSymbolSpecificationContext : SymbolSpecificationContext {
+		public NotNoneSymbolSpecificationContext(SymbolSpecificationContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			ITuringMachineListener typedListener = listener as ITuringMachineListener;
+			if (typedListener != null) typedListener.EnterNotNoneSymbolSpecification(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			ITuringMachineListener typedListener = listener as ITuringMachineListener;
+			if (typedListener != null) typedListener.ExitNotNoneSymbolSpecification(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITuringMachineVisitor<TResult> typedVisitor = visitor as ITuringMachineVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitNotNoneSymbolSpecification(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class SymbolSymbolSpecificationContext : SymbolSpecificationContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VALID_CHAR() { return GetToken(TuringMachineParser.VALID_CHAR, 0); }
-		public SymbolContext(SymbolSpecificationContext context) { CopyFrom(context); }
+		public SymbolSymbolSpecificationContext(SymbolSpecificationContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			ITuringMachineListener typedListener = listener as ITuringMachineListener;
-			if (typedListener != null) typedListener.EnterSymbol(this);
+			if (typedListener != null) typedListener.EnterSymbolSymbolSpecification(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			ITuringMachineListener typedListener = listener as ITuringMachineListener;
-			if (typedListener != null) typedListener.ExitSymbol(this);
+			if (typedListener != null) typedListener.ExitSymbolSymbolSpecification(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITuringMachineVisitor<TResult> typedVisitor = visitor as ITuringMachineVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSymbol(this);
+			if (typedVisitor != null) return typedVisitor.VisitSymbolSymbolSpecification(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class AnyNoneContext : SymbolSpecificationContext {
-		public AnyNoneContext(SymbolSpecificationContext context) { CopyFrom(context); }
+	public partial class NoneSymbolSpecificationContext : SymbolSpecificationContext {
+		public NoneSymbolSpecificationContext(SymbolSpecificationContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			ITuringMachineListener typedListener = listener as ITuringMachineListener;
-			if (typedListener != null) typedListener.EnterAnyNone(this);
+			if (typedListener != null) typedListener.EnterNoneSymbolSpecification(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			ITuringMachineListener typedListener = listener as ITuringMachineListener;
-			if (typedListener != null) typedListener.ExitAnyNone(this);
+			if (typedListener != null) typedListener.ExitNoneSymbolSpecification(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITuringMachineVisitor<TResult> typedVisitor = visitor as ITuringMachineVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAnyNone(this);
+			if (typedVisitor != null) return typedVisitor.VisitNoneSymbolSpecification(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class NoneContext : SymbolSpecificationContext {
-		public NoneContext(SymbolSpecificationContext context) { CopyFrom(context); }
+	public partial class AnySymbolSpecificationContext : SymbolSpecificationContext {
+		public AnySymbolSpecificationContext(SymbolSpecificationContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			ITuringMachineListener typedListener = listener as ITuringMachineListener;
-			if (typedListener != null) typedListener.EnterNone(this);
+			if (typedListener != null) typedListener.EnterAnySymbolSpecification(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			ITuringMachineListener typedListener = listener as ITuringMachineListener;
-			if (typedListener != null) typedListener.ExitNone(this);
+			if (typedListener != null) typedListener.ExitAnySymbolSpecification(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITuringMachineVisitor<TResult> typedVisitor = visitor as ITuringMachineVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNone(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class AnyContext : SymbolSpecificationContext {
-		public AnyContext(SymbolSpecificationContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			ITuringMachineListener typedListener = listener as ITuringMachineListener;
-			if (typedListener != null) typedListener.EnterAny(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			ITuringMachineListener typedListener = listener as ITuringMachineListener;
-			if (typedListener != null) typedListener.ExitAny(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ITuringMachineVisitor<TResult> typedVisitor = visitor as ITuringMachineVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAny(this);
+			if (typedVisitor != null) return typedVisitor.VisitAnySymbolSpecification(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -783,7 +783,7 @@ public partial class TuringMachineParser : Parser {
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case T__7:
-				_localctx = new NoneContext(_localctx);
+				_localctx = new NoneSymbolSpecificationContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 71;
@@ -791,7 +791,7 @@ public partial class TuringMachineParser : Parser {
 				}
 				break;
 			case T__8:
-				_localctx = new AnyContext(_localctx);
+				_localctx = new NotNoneSymbolSpecificationContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 72;
@@ -799,7 +799,7 @@ public partial class TuringMachineParser : Parser {
 				}
 				break;
 			case T__9:
-				_localctx = new AnyNoneContext(_localctx);
+				_localctx = new AnySymbolSpecificationContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 73;
@@ -807,7 +807,7 @@ public partial class TuringMachineParser : Parser {
 				}
 				break;
 			case VALID_CHAR:
-				_localctx = new SymbolContext(_localctx);
+				_localctx = new SymbolSymbolSpecificationContext(_localctx);
 				EnterOuterAlt(_localctx, 4);
 				{
 				State = 74;
