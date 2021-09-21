@@ -5,10 +5,11 @@
     using System.Reflection;
 
     [TestFixture]
-    public class MachineBuilderTests
+    public class MachineBuilderTests 
     {
         [TestCase( "ComputeAlternate0sAnd1s.machine", "ComputeAlternate0sAnd1s.state", 12 )]
-        public void ComputeAlternate0sAnd1sTest(string machineFile, string stateFile, int iterations)
+        [TestCase( "ComputeIncreasinglyLongerRuns.machine", "ComputeIncreasinglyLongerRuns.state", 224 )]
+        public void Test(string machineFile, string stateFile, int iterations)
         {
             var input = ResourceHelpers.GetResourceAsString(machineFile, Assembly.GetExecutingAssembly());
             var expected = ResourceHelpers.GetResourceAsString(stateFile, Assembly.GetExecutingAssembly());

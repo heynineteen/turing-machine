@@ -21,7 +21,7 @@ finalMConfiguration
     ;
     
 operations
-    : operation (',' operation)*
+    : (operation (',' operation)*)?
     ;
     
 operation

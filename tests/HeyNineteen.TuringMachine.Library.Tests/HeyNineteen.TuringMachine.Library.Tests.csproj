@@ -9,9 +9,13 @@
   <ItemGroup>
     <None Remove="ComputeAlternate0sAnd1s.machine" />
     <None Remove="ComputeAlternate0sAnd1s.state" />
+    <None Remove="ComputeIncreasinglyLongerRuns.machine" />
+    <None Remove="ComputeIncreasinglyLongerRuns.state" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="ComputeIncreasinglyLongerRuns.state" />
+    <EmbeddedResource Include="ComputeIncreasinglyLongerRuns.machine" />
     <EmbeddedResource Include="ComputeAlternate0sAnd1s.state" />
     <EmbeddedResource Include="ComputeAlternate0sAnd1s.machine" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
     <ProjectReference Include="..\HeyNineteen.TuringMachine.Library\HeyNineteen.TuringMachine.Library.csproj" />

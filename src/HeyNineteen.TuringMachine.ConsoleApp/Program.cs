@@ -2,6 +2,7 @@ using System;
 
 namespace HeyNineteen.TuringMachine.ConsoleApp
 {
+    using System.IO;
     using HeyNineteen.TuringMachine.Library;
 
     class Program
@@ -48,21 +49,33 @@ namespace HeyNineteen.TuringMachine.ConsoleApp
             //};
 
             // p.84 compute alternate 0s and 1s simpler
-            var steps = new Step[]
-            {
-                new (new ConfigurationSpecification("b", SymbolSpecificationWildcard.Any), new Behavior(new Operation[]{new Print('0')}, "b")),
-                new (new ConfigurationSpecification("b", '0'), new Behavior(new Operation[]{new MoveRight(), new MoveRight(), new Print('1')}, "b")),
-                new (new ConfigurationSpecification("b", '1'), new Behavior(new Operation[]{new MoveRight(), new MoveRight(), new Print('0')}, "b")),
-            };
+            //var steps = new Step[]
+            //{
+            //    new (new ConfigurationSpecification("b", SymbolSpecificationWildcard.Any), new Behavior(new Operation[]{new Print('0')}, "b")),
+            //    new (new ConfigurationSpecification("b", '0'), new Behavior(new Operation[]{new MoveRight(), new MoveRight(), new Print('1')}, "b")),
+            //    new (new ConfigurationSpecification("b", '1'), new Behavior(new Operation[]{new MoveRight(), new MoveRight(), new Print('0')}, "b")),
+            //};
 
-            var machine = new Machine(steps);
+            //var machine = new Machine(steps);
 
-            while (true)
+            //while (true)
+            //{
+            //    Console.WriteLine(machine.State);
+            //    Console.ReadKey();
+            //    machine.Tick();
+            //}
+
+            var inputFile = args[0];
+
+            var input = File.ReadAllText(inputFile);
+            var machine = new MachineBuilder().Build(input);
+
+            do
             {
-                Console.WriteLine(machine.State);
-                Console.ReadKey();
                 machine.Tick();
-            }
+                Console.Write("\r{0}", machine.State);
+                Console.ReadKey(true);
+            } while (true);
         } 
     }
 }
