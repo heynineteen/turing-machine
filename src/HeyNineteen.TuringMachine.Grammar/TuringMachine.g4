@@ -1,8 +1,8 @@
+grammar TuringMachine ;
+
 @header {
 #pragma warning disable 3021
 }
-
-grammar TuringMachine ;
 
 file
     : machine EOF

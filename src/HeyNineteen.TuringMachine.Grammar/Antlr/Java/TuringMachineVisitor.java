@@ -1,4 +1,7 @@
 // Generated from TuringMachine.g4 by ANTLR 4.9.2
+
+#pragma warning disable 3021
+
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**

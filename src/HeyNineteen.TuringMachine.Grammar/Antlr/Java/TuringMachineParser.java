@@ -1,4 +1,7 @@
 // Generated from TuringMachine.g4 by ANTLR 4.9.2
+
+#pragma warning disable 3021
+
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
