@@ -6,10 +6,10 @@ namespace HeyNineteen.TuringMachine.Library
     public class SymbolSpecificationWildcard
     {
         public static SymbolSpecificationWildcard None = new SymbolSpecificationWildcard("None");
-        public static SymbolSpecificationWildcard NotNone = new SymbolSpecificationWildcard( "NotNone" );
+        public static SymbolSpecificationWildcard AnyOrNone = new SymbolSpecificationWildcard( "AnyOrNone" );
         public static SymbolSpecificationWildcard Any = new SymbolSpecificationWildcard( "Any" );
 
-        private static readonly SymbolSpecificationWildcard[] All = new SymbolSpecificationWildcard[] {None, NotNone, Any};
+        private static readonly SymbolSpecificationWildcard[] All = new SymbolSpecificationWildcard[] {None, AnyOrNone, Any};
 
         public string Name { get; }
 

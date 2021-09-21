@@ -80,19 +80,19 @@ public interface TuringMachineVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNoneSymbolSpecification(TuringMachineParser.NoneSymbolSpecificationContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code NotNoneSymbolSpecification}
-	 * labeled alternative in {@link TuringMachineParser#symbolSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNotNoneSymbolSpecification(TuringMachineParser.NotNoneSymbolSpecificationContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code AnySymbolSpecification}
 	 * labeled alternative in {@link TuringMachineParser#symbolSpecification}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAnySymbolSpecification(TuringMachineParser.AnySymbolSpecificationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AnyOrNoneSymbolSpecification}
+	 * labeled alternative in {@link TuringMachineParser#symbolSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAnyOrNoneSymbolSpecification(TuringMachineParser.AnyOrNoneSymbolSpecificationContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code SymbolSymbolSpecification}
 	 * labeled alternative in {@link TuringMachineParser#symbolSpecification}.

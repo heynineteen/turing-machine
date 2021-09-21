@@ -122,18 +122,6 @@ public interface TuringMachineListener extends ParseTreeListener {
 	 */
 	void exitNoneSymbolSpecification(TuringMachineParser.NoneSymbolSpecificationContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code NotNoneSymbolSpecification}
-	 * labeled alternative in {@link TuringMachineParser#symbolSpecification}.
-	 * @param ctx the parse tree
-	 */
-	void enterNotNoneSymbolSpecification(TuringMachineParser.NotNoneSymbolSpecificationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code NotNoneSymbolSpecification}
-	 * labeled alternative in {@link TuringMachineParser#symbolSpecification}.
-	 * @param ctx the parse tree
-	 */
-	void exitNotNoneSymbolSpecification(TuringMachineParser.NotNoneSymbolSpecificationContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code AnySymbolSpecification}
 	 * labeled alternative in {@link TuringMachineParser#symbolSpecification}.
 	 * @param ctx the parse tree
@@ -145,6 +133,18 @@ public interface TuringMachineListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAnySymbolSpecification(TuringMachineParser.AnySymbolSpecificationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code AnyOrNoneSymbolSpecification}
+	 * labeled alternative in {@link TuringMachineParser#symbolSpecification}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnyOrNoneSymbolSpecification(TuringMachineParser.AnyOrNoneSymbolSpecificationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code AnyOrNoneSymbolSpecification}
+	 * labeled alternative in {@link TuringMachineParser#symbolSpecification}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnyOrNoneSymbolSpecification(TuringMachineParser.AnyOrNoneSymbolSpecificationContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code SymbolSymbolSpecification}
 	 * labeled alternative in {@link TuringMachineParser#symbolSpecification}.

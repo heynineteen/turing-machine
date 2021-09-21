@@ -102,19 +102,19 @@ public interface ITuringMachineVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitNoneSymbolSpecification([NotNull] TuringMachineParser.NoneSymbolSpecificationContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>NotNoneSymbolSpecification</c>
-	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNotNoneSymbolSpecification([NotNull] TuringMachineParser.NotNoneSymbolSpecificationContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>AnySymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAnySymbolSpecification([NotNull] TuringMachineParser.AnySymbolSpecificationContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>AnyOrNoneSymbolSpecification</c>
+	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAnyOrNoneSymbolSpecification([NotNull] TuringMachineParser.AnyOrNoneSymbolSpecificationContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>SymbolSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.

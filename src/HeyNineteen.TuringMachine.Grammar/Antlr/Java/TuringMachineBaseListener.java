@@ -150,18 +150,6 @@ public class TuringMachineBaseListener implements TuringMachineListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNotNoneSymbolSpecification(TuringMachineParser.NotNoneSymbolSpecificationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNotNoneSymbolSpecification(TuringMachineParser.NotNoneSymbolSpecificationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterAnySymbolSpecification(TuringMachineParser.AnySymbolSpecificationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -169,6 +157,18 @@ public class TuringMachineBaseListener implements TuringMachineListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAnySymbolSpecification(TuringMachineParser.AnySymbolSpecificationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAnyOrNoneSymbolSpecification(TuringMachineParser.AnyOrNoneSymbolSpecificationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAnyOrNoneSymbolSpecification(TuringMachineParser.AnyOrNoneSymbolSpecificationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

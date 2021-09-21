@@ -95,15 +95,15 @@
             return null;
         }
 
-        public override Machine VisitNotNoneSymbolSpecification(TuringMachineParser.NotNoneSymbolSpecificationContext context)
-        {
-            _currentSymbolSpecification = SymbolSpecificationWildcard.NotNone;
-            return null;
-        }
-
         public override Machine VisitAnySymbolSpecification(TuringMachineParser.AnySymbolSpecificationContext context)
         {
             _currentSymbolSpecification = SymbolSpecificationWildcard.Any;
+            return null;
+        }
+
+        public override Machine VisitAnyOrNoneSymbolSpecification(TuringMachineParser.AnyOrNoneSymbolSpecificationContext context)
+        {
+            _currentSymbolSpecification = SymbolSpecificationWildcard.AnyOrNone;
             return null;
         }
 

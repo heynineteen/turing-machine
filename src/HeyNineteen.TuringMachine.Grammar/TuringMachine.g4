@@ -21,7 +21,7 @@ finalMConfiguration
     ;
     
 operations
-    : (operation (',' operation)*)?
+    : (operation (',' operation)*)? // Allow 0 or more operations
     ;
     
 operation
@@ -49,8 +49,8 @@ print
     
 symbolSpecification
     : 'none'        #NoneSymbolSpecification
-    | 'notNone'     #NotNoneSymbolSpecification
     | 'any'         #AnySymbolSpecification
+    | 'anyOrNone'   #AnyOrNoneSymbolSpecification
     | VALID_CHAR    #SymbolSymbolSpecification
     ;
     

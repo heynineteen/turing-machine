@@ -173,20 +173,6 @@ public partial class TuringMachineBaseListener : ITuringMachineListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNoneSymbolSpecification([NotNull] TuringMachineParser.NoneSymbolSpecificationContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotNoneSymbolSpecification</c>
-	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotNoneSymbolSpecification([NotNull] TuringMachineParser.NotNoneSymbolSpecificationContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotNoneSymbolSpecification</c>
-	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotNoneSymbolSpecification([NotNull] TuringMachineParser.NotNoneSymbolSpecificationContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>AnySymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -200,6 +186,20 @@ public partial class TuringMachineBaseListener : ITuringMachineListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAnySymbolSpecification([NotNull] TuringMachineParser.AnySymbolSpecificationContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AnyOrNoneSymbolSpecification</c>
+	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnyOrNoneSymbolSpecification([NotNull] TuringMachineParser.AnyOrNoneSymbolSpecificationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AnyOrNoneSymbolSpecification</c>
+	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnyOrNoneSymbolSpecification([NotNull] TuringMachineParser.AnyOrNoneSymbolSpecificationContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>SymbolSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.

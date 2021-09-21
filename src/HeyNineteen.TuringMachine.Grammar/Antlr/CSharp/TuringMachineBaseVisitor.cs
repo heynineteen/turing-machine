@@ -149,17 +149,6 @@ public partial class TuringMachineBaseVisitor<Result> : AbstractParseTreeVisitor
 	/// <return>The visitor result.</return>
 	public virtual Result VisitNoneSymbolSpecification([NotNull] TuringMachineParser.NoneSymbolSpecificationContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>NotNoneSymbolSpecification</c>
-	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
-	/// <para>
-	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-	/// on <paramref name="context"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	public virtual Result VisitNotNoneSymbolSpecification([NotNull] TuringMachineParser.NotNoneSymbolSpecificationContext context) { return VisitChildren(context); }
-	/// <summary>
 	/// Visit a parse tree produced by the <c>AnySymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
 	/// <para>
@@ -170,6 +159,17 @@ public partial class TuringMachineBaseVisitor<Result> : AbstractParseTreeVisitor
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitAnySymbolSpecification([NotNull] TuringMachineParser.AnySymbolSpecificationContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>AnyOrNoneSymbolSpecification</c>
+	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAnyOrNoneSymbolSpecification([NotNull] TuringMachineParser.AnyOrNoneSymbolSpecificationContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>SymbolSymbolSpecification</c>
 	/// labeled alternative in <see cref="TuringMachineParser.symbolSpecification"/>.

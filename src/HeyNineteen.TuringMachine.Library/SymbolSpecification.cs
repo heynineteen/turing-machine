@@ -25,10 +25,10 @@ namespace HeyNineteen.TuringMachine.Library
             if (!IsWildcard)
                 return Symbol == symbol;
 
-            if (Wildcard == SymbolSpecificationWildcard.Any)
+            if (Wildcard == SymbolSpecificationWildcard.AnyOrNone)
                 return true;
 
-            if (Wildcard == SymbolSpecificationWildcard.NotNone)
+            if (Wildcard == SymbolSpecificationWildcard.Any)
                 return symbol != null;
 
             if (Wildcard == SymbolSpecificationWildcard.None)

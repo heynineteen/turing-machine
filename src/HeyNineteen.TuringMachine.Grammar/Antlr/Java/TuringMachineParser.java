@@ -35,8 +35,8 @@ public class TuringMachineParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'->'", "';'", "','", "'L'", "'R'", "'E'", "'P'", "'none'", "'notNone'", 
-			"'any'"
+			null, "'->'", "';'", "','", "'L'", "'R'", "'E'", "'P'", "'none'", "'any'", 
+			"'anyOrNone'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -663,22 +663,6 @@ public class TuringMachineParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class NotNoneSymbolSpecificationContext extends SymbolSpecificationContext {
-		public NotNoneSymbolSpecificationContext(SymbolSpecificationContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof TuringMachineListener ) ((TuringMachineListener)listener).enterNotNoneSymbolSpecification(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof TuringMachineListener ) ((TuringMachineListener)listener).exitNotNoneSymbolSpecification(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof TuringMachineVisitor ) return ((TuringMachineVisitor<? extends T>)visitor).visitNotNoneSymbolSpecification(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class SymbolSymbolSpecificationContext extends SymbolSpecificationContext {
 		public TerminalNode VALID_CHAR() { return getToken(TuringMachineParser.VALID_CHAR, 0); }
 		public SymbolSymbolSpecificationContext(SymbolSpecificationContext ctx) { copyFrom(ctx); }
@@ -728,6 +712,22 @@ public class TuringMachineParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class AnyOrNoneSymbolSpecificationContext extends SymbolSpecificationContext {
+		public AnyOrNoneSymbolSpecificationContext(SymbolSpecificationContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TuringMachineListener ) ((TuringMachineListener)listener).enterAnyOrNoneSymbolSpecification(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TuringMachineListener ) ((TuringMachineListener)listener).exitAnyOrNoneSymbolSpecification(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TuringMachineVisitor ) return ((TuringMachineVisitor<? extends T>)visitor).visitAnyOrNoneSymbolSpecification(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 
 	public final SymbolSpecificationContext symbolSpecification() throws RecognitionException {
 		SymbolSpecificationContext _localctx = new SymbolSpecificationContext(_ctx, getState());
@@ -745,7 +745,7 @@ public class TuringMachineParser extends Parser {
 				}
 				break;
 			case T__8:
-				_localctx = new NotNoneSymbolSpecificationContext(_localctx);
+				_localctx = new AnySymbolSpecificationContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(74);
@@ -753,7 +753,7 @@ public class TuringMachineParser extends Parser {
 				}
 				break;
 			case T__9:
-				_localctx = new AnySymbolSpecificationContext(_localctx);
+				_localctx = new AnyOrNoneSymbolSpecificationContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(75);

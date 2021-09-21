@@ -20,5 +20,5 @@ WS=14
 'E'=6
 'P'=7
 'none'=8
-'notNone'=9
-'any'=10
+'any'=9
+'anyOrNone'=10
