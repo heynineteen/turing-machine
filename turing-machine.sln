@@ -15,6 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeyNineteen.TuringMachine.L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeyNineteen.TuringMachine.Grammar", "src\HeyNineteen.TuringMachine.Grammar\HeyNineteen.TuringMachine.Grammar.csproj", "{17EFD1AD-91CB-436A-80C5-59340166C6D0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4F59AE6-76A8-446C-A48C-4E64A6211609}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
