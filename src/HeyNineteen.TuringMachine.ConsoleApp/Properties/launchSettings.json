@@ -2,7 +2,7 @@
   "profiles": {
     "HeyNineteen.TuringMachine.ConsoleApp": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Development\\HeyNineteen\\turing-machine\\tests\\HeyNineteen.TuringMachine.Library.Tests\\ComputeIncreasinglyLongerRuns.machine"
+      "commandLineArgs": " -f C:\\Development\\HeyNineteen\\turing-machine\\tests\\HeyNineteen.TuringMachine.Library.Tests\\ComputeIncreasinglyLongerRuns.machine -p 100"
     }
   }
 }

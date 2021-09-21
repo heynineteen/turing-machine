@@ -1,9 +1,10 @@
-using System;
-
 namespace HeyNineteen.TuringMachine.ConsoleApp
 {
+    using CommandLine;
+    using Library;
+    using System;
     using System.IO;
-    using HeyNineteen.TuringMachine.Library;
+    using System.Threading;
 
     class Program
     {
@@ -28,6 +29,12 @@ namespace HeyNineteen.TuringMachine.ConsoleApp
         }
 
         public void Run(string[] args)
+        {
+            Parser.Default.ParseArguments<Options>(args)
+                .WithParsed(RunOptions);
+        }
+
+        public void RunOptions(Options options)
         {
             // p.81 compute alternate 0s and 1s
             //var lines = new Step[]
@@ -65,17 +72,29 @@ namespace HeyNineteen.TuringMachine.ConsoleApp
             //    machine.Tick();
             //}
 
-            var inputFile = args[0];
+            var inputFile = options.InputFile;
 
             var input = File.ReadAllText(inputFile);
             var machine = new MachineBuilder().Build(input);
 
-            do
+            var counter = 0;
+            var pauseInterval = Math.Max(options.PauseInterval, 0);
+            
+            Action outputAction = options.KeepHistory
+                ? () => { Console.WriteLine("{0} : {1}", ++counter, machine.State); }
+                : () => { Console.Write("\r{0} : {1}", ++counter, machine.State); };
+        
+
+            while(counter < options.StepCount)
             {
                 machine.Tick();
-                Console.Write("\r{0}", machine.State);
-                Console.ReadKey(true);
-            } while (true);
+                outputAction();
+
+                if (options.StepThrough)
+                    Console.Read();
+                else
+                    Thread.Sleep(pauseInterval);
+            }
         } 
     }
 }

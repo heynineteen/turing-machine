@@ -4,6 +4,10 @@
     <ProjectReference Include="..\HeyNineteen.TuringMachine.Library\HeyNineteen.TuringMachine.Library.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
