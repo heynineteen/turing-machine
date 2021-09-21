@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ComputeAlternate0sAnd1s.turing" />
+    <None Remove="ComputeAlternate0sAnd1s.machine" />
+    <None Remove="ComputeAlternate0sAnd1s.state" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="ComputeAlternate0sAnd1s.turing" />
+    <EmbeddedResource Include="ComputeAlternate0sAnd1s.state" />
+    <EmbeddedResource Include="ComputeAlternate0sAnd1s.machine" />
   </ItemGroup>
 
   <ItemGroup>

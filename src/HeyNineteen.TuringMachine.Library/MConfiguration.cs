@@ -115,7 +115,7 @@ namespace HeyNineteen.TuringMachine.Library
         {
             var configuration = new Configuration(_currentMConfiguration, _tape.Read());
 
-            var step = _steps.FirstOrDefault(line => line.ConfigurationSpecification.IsSatisfiedBy(configuration));
+            var step = _steps.FirstOrDefault(step => step.ConfigurationSpecification.IsSatisfiedBy(configuration));
 
             if (step == null)
                 throw new UnrecognisedConfigurationException(configuration);
@@ -131,7 +131,7 @@ namespace HeyNineteen.TuringMachine.Library
         public string State => _completeConfiguration.With(_currentMConfiguration).ToString();
     }
 
-    [DebuggerDisplay("{ConfigurationSpecification}")]
+    [DebuggerDisplay("{ConfigurationSpecification}:{Behavior}")]
     public class Step
     {
         public Step(ConfigurationSpecification configurationSpecification, Behavior behavior)
@@ -220,7 +220,7 @@ namespace HeyNineteen.TuringMachine.Library
         public char? Symbol { get; }
     }
 
-    [DebuggerDisplay( "{MConfiguration.Value} : {Symbol}" )]
+    [DebuggerDisplay( "{MConfiguration.Value} : {SymbolSpecification}" )]
     public class ConfigurationSpecification
     {
         public ConfigurationSpecification(MConfiguration mConfiguration, SymbolSpecification symbolSpecification)
@@ -280,6 +280,10 @@ namespace HeyNineteen.TuringMachine.Library
         public static implicit operator SymbolSpecification(SymbolSpecificationWildcard wildcard) => new(wildcard);
 
         public static implicit operator SymbolSpecification(char symbol) => new(symbol);
+
+        public override string ToString() =>
+            $"{Symbol?.ToString() ?? string.Empty}{Wildcard?.ToString() ?? string.Empty}";
+
     }
 
     public class SymbolSpecificationWildcard
@@ -301,8 +305,11 @@ namespace HeyNineteen.TuringMachine.Library
         {
             return All.FirstOrDefault(s => s.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
         }
+
+        public override string ToString() => Name;
     }
 
+    [DebuggerDisplay("{Operations}:{FinalMConfiguration}")]
     public class Behavior
     {
         public Behavior(IEnumerable<Operation> operations, MConfiguration finalMConfiguration)
@@ -321,6 +328,7 @@ namespace HeyNineteen.TuringMachine.Library
         public abstract void Execute(Tape tape);
     }
 
+    [DebuggerDisplay("P{_symbol}")]
     public class Print : Operation
     {
         private readonly char _symbol;
@@ -333,16 +341,19 @@ namespace HeyNineteen.TuringMachine.Library
         public override void Execute(Tape tape) => tape.Print(_symbol);
     }
 
+    [DebuggerDisplay("R")]
     public class MoveRight : Operation
     {
         public override void Execute( Tape tape ) => tape.MoveRight();
     }
 
+    [DebuggerDisplay( "L" )]
     public class MoveLeft : Operation
     {
         public override void Execute( Tape tape ) => tape.MoveLeft();
     }
 
+    [DebuggerDisplay( "E" )]
     public class Erase : Operation
     {
         public override void Execute( Tape tape ) => tape.Erase();

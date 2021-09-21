@@ -1,43 +1,8 @@
 ﻿namespace HeyNineteen.TuringMachine.Library
 {
-    using Antlr4.Runtime;
-    using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.Serialization;
     using Antlr4.Runtime.Tree;
-    using Microsoft.Win32.SafeHandles;
-
-    public class MachineBuilder
-    {
-        public Machine Build(string input)
-        {
-            try
-            {
-                var inputStream = new AntlrInputStream(input);
-                var lexer = new TuringMachineLexer(inputStream);
-                var commonTokenStream = new CommonTokenStream(lexer);
-                var parser = new TuringMachineParser(commonTokenStream);
-                TuringMachineParser.FileContext fileContext = parser.file();
-
-                WriteDebug(input, fileContext.ToStringTree(parser));
-
-                var visitor = new TuringMachineVisitor();
-                return visitor.Visit( fileContext );
-            }
-            catch (Exception e)
-            {
-                throw new BuildException(input, e);
-            }
-        }
-
-        [System.Diagnostics.Conditional("DEBUG")]
-        private void WriteDebug(string input, string tree)
-        {
-            System.Diagnostics.Debug.WriteLine($"INPUT: {input} PARSED AS {tree}");
-        }
-    }
 
     public class TuringMachineVisitor : TuringMachineBaseVisitor<Machine>
     {
@@ -47,11 +12,6 @@
         private MConfiguration _currentFinalMConfiguration;
         private readonly List<Operation> _currentOperations = new();
         private readonly List<Step> _steps = new();
-
-        public override Machine VisitFile(TuringMachineParser.FileContext context)
-        {
-            return base.VisitFile(context);
-        }
 
         public override Machine VisitMachine(TuringMachineParser.MachineContext context)
         {
@@ -81,7 +41,7 @@
         {
             ClearCurrentState();
 
-            var machine = base.VisitStep(context);
+            base.VisitStep(context);
 
             _steps.Add(
                 new Step(new ConfigurationSpecification(_currentMConfiguration, _currentSymbolSpecification),

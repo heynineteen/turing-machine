@@ -1,24 +1,31 @@
 ﻿namespace HeyNineteen.TuringMachine.Library.Tests
 {
-    using System.Reflection;
-    using System.Resources;
     using FluentAssertions;
-    using NSubstitute;
     using NUnit.Framework;
+    using System.Reflection;
 
     [TestFixture]
     public class MachineBuilderTests
     {
-        [Test]
-        public void ComputeAlternate0sAnd1sTest()
+        [TestCase( "ComputeAlternate0sAnd1s.machine", "ComputeAlternate0sAnd1s.state", 12 )]
+        public void ComputeAlternate0sAnd1sTest(string machineFile, string stateFile, int iterations)
         {
-            var input = ResourceHelpers.GetResourceAsString("ComputeAlternate0sAnd1s.turing", Assembly.GetExecutingAssembly());
+            var input = ResourceHelpers.GetResourceAsString(machineFile, Assembly.GetExecutingAssembly());
+            var expected = ResourceHelpers.GetResourceAsString(stateFile, Assembly.GetExecutingAssembly());
 
             var builder = new MachineBuilder();
 
             var machine = builder.Build(input);
 
-            true.Should().BeFalse();
+            machine.Should().NotBeNull();
+
+            for(int i = 0; i < iterations; i++)
+                machine.Tick();
+
+            FileHelpers.WriteToTempFile(machineFile, input);
+            FileHelpers.WriteToTempFile(stateFile, expected);
+
+            machine.State.Should().Be(expected);
         }
     }
 }

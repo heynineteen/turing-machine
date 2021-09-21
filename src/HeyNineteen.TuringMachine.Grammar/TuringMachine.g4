@@ -1,3 +1,7 @@
+@header {
+#pragma warning disable 3021
+}
+
 grammar TuringMachine ;
 
 file
