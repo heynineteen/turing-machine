@@ -1,10 +1,10 @@
-﻿/*  p.99 */
+﻿// p.99
 
-begin     -> none -> P0    -> increment
+begin     -> none -> P0    -> increment;
 
-increment -> 0    -> P1    -> rewind
-increment -> 1    -> P0, L -> increment
-increment -> none -> P1    -> rewind
+increment -> 0    -> P1    -> rewind;
+increment -> 1    -> P0, L -> increment;
+increment -> none -> P1    -> rewind;
 
-rewind    -> none -> L     -> increment
-rewind    ->      -> R     -> rewind
+rewind    -> none -> L     -> increment;
+rewind    ->      -> R     -> rewind;
