@@ -5,7 +5,7 @@
     using System.Reflection;
 
     [TestFixture]
-    public class MachineBuilderTests 
+    public class MachineTests 
     {
         [TestCase( "ComputeAlternate0sAnd1s.machine", "ComputeAlternate0sAnd1s.state", 12 )] // p.81 compute alternate 0s and 1s
         [TestCase( "ComputeIncreasinglyLongerRuns.machine", "ComputeIncreasinglyLongerRuns.state", 224 )] // p.87

@@ -19,22 +19,22 @@ Result after 12 steps:
 ```
 0 1 0 1 0 1 b
 ```
-This machine computes a number with increasing numbers of 1s delimited with single 0s (p. 87):    
+This machine computes a number with increasing numbers of 1s delimited with single 0s (p. 87):
 ```
-b -> anyOrNone     -> Pe,R,Pe,R,P0,R,R,P0,L,L -> o;
+b -> anyOrNone     -> Pe, R, Pe, R, P0, R, R, P0, L, L -> o;
  
-o -> 1             -> R,Px,L,L,L              -> o;
-o -> 0             ->                         -> q;
+o -> 1             -> R, Px, L, L, L                   -> o;
+o -> 0             ->                                  -> q;
  
-q -> any           -> R,R                     -> q;
-q -> none          -> P1,L                    -> p;
+q -> any           -> R, R                             -> q;
+q -> none          -> P1, L                            -> p;
  
-p -> x             -> E,R                     -> q;
-p -> e             -> R                       -> f;
-p -> none          -> L,L                     -> p;
+p -> x             -> E, R                             -> q;
+p -> e             -> R                                -> f;
+p -> none          -> L, L                             -> p;
  
-f -> any           -> R,R                     -> f;
-f -> none          -> P0,L,L                  -> o;
+f -> any           -> R, R                             -> f;
+f -> none          -> P0, L, L                         -> o;
 ```
 Result after 224 steps:
 ```

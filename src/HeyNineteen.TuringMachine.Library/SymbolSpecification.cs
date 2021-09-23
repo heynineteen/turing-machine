@@ -43,6 +43,5 @@ namespace HeyNineteen.TuringMachine.Library
 
         public override string ToString() =>
             $"{Symbol?.ToString() ?? string.Empty}{Wildcard?.ToString() ?? string.Empty}";
-
     }
 }
