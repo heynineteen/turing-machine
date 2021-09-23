@@ -21,7 +21,7 @@
         [Option( 'p', "pauseInterval", Default = 0, HelpText = "Time in milliseconds the machine will pause between executing steps." )]
         public int PauseInterval { get; set; }
 
-        [Usage( ApplicationAlias = "HeyNineteen.TuringMachine.ConsoleApp" )]
+        [Usage( ApplicationAlias = "HeyNineteen.TuringMachine.ConsoleApp.exe" )]
         public static IEnumerable<Example> Examples =>
              new List<Example>
              {
