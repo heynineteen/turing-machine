@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="AllPositiveIntegers.machine" />
     <None Remove="ComputeAlternate0sAnd1s.machine" />
     <None Remove="ComputeAlternate0sAnd1s.state" />
     <None Remove="ComputeIncreasinglyLongerRuns.machine" />
@@ -14,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="AllPositiveIntegers.machine" />
     <EmbeddedResource Include="ComputeIncreasinglyLongerRuns.state" />
     <EmbeddedResource Include="ComputeIncreasinglyLongerRuns.machine" />
     <EmbeddedResource Include="ComputeAlternate0sAnd1s.state" />
