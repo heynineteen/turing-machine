@@ -210,14 +210,14 @@ public class TuringMachineParser extends Parser {
 		public MConfigurationContext mConfiguration() {
 			return getRuleContext(MConfigurationContext.class,0);
 		}
-		public SymbolSpecificationContext symbolSpecification() {
-			return getRuleContext(SymbolSpecificationContext.class,0);
-		}
 		public OperationsContext operations() {
 			return getRuleContext(OperationsContext.class,0);
 		}
 		public FinalMConfigurationContext finalMConfiguration() {
 			return getRuleContext(FinalMConfigurationContext.class,0);
+		}
+		public SymbolSpecificationContext symbolSpecification() {
+			return getRuleContext(SymbolSpecificationContext.class,0);
 		}
 		public StepContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -241,6 +241,7 @@ public class TuringMachineParser extends Parser {
 	public final StepContext step() throws RecognitionException {
 		StepContext _localctx = new StepContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_step);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -248,17 +249,25 @@ public class TuringMachineParser extends Parser {
 			mConfiguration();
 			setState(35);
 			match(T__0);
-			setState(36);
-			symbolSpecification();
 			setState(37);
-			match(T__0);
-			setState(38);
-			operations();
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << VALID_CHAR))) != 0)) {
+				{
+				setState(36);
+				symbolSpecification();
+				}
+			}
+
 			setState(39);
 			match(T__0);
 			setState(40);
-			finalMConfiguration();
+			operations();
 			setState(41);
+			match(T__0);
+			setState(42);
+			finalMConfiguration();
+			setState(43);
 			match(T__1);
 			}
 		}
@@ -304,17 +313,17 @@ public class TuringMachineParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44); 
+			setState(46); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(43);
+				setState(45);
 				match(VALID_CHAR);
 				}
 				}
-				setState(46); 
+				setState(48); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==VALID_CHAR );
@@ -364,26 +373,26 @@ public class TuringMachineParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(56);
+			setState(58);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__4) | (1L << T__5) | (1L << T__6))) != 0)) {
 				{
-				setState(48);
+				setState(50);
 				operation();
-				setState(53);
+				setState(55);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__2) {
 					{
 					{
-					setState(49);
+					setState(51);
 					match(T__2);
-					setState(50);
+					setState(52);
 					operation();
 					}
 					}
-					setState(55);
+					setState(57);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -439,34 +448,34 @@ public class TuringMachineParser extends Parser {
 		OperationContext _localctx = new OperationContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_operation);
 		try {
-			setState(62);
+			setState(64);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__3:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(58);
+				setState(60);
 				moveLeft();
 				}
 				break;
 			case T__4:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(59);
+				setState(61);
 				moveRight();
 				}
 				break;
 			case T__5:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(60);
+				setState(62);
 				erase();
 				}
 				break;
 			case T__6:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(61);
+				setState(63);
 				print();
 				}
 				break;
@@ -511,7 +520,7 @@ public class TuringMachineParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(64);
+			setState(66);
 			match(T__3);
 			}
 		}
@@ -552,7 +561,7 @@ public class TuringMachineParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(66);
+			setState(68);
 			match(T__4);
 			}
 		}
@@ -593,7 +602,7 @@ public class TuringMachineParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(68);
+			setState(70);
 			match(T__5);
 			}
 		}
@@ -635,9 +644,9 @@ public class TuringMachineParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(70);
+			setState(72);
 			match(T__6);
-			setState(71);
+			setState(73);
 			match(VALID_CHAR);
 			}
 		}
@@ -733,14 +742,14 @@ public class TuringMachineParser extends Parser {
 		SymbolSpecificationContext _localctx = new SymbolSpecificationContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_symbolSpecification);
 		try {
-			setState(77);
+			setState(79);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__7:
 				_localctx = new NoneSymbolSpecificationContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(73);
+				setState(75);
 				match(T__7);
 				}
 				break;
@@ -748,7 +757,7 @@ public class TuringMachineParser extends Parser {
 				_localctx = new AnySymbolSpecificationContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(74);
+				setState(76);
 				match(T__8);
 				}
 				break;
@@ -756,7 +765,7 @@ public class TuringMachineParser extends Parser {
 				_localctx = new AnyOrNoneSymbolSpecificationContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(75);
+				setState(77);
 				match(T__9);
 				}
 				break;
@@ -764,7 +773,7 @@ public class TuringMachineParser extends Parser {
 				_localctx = new SymbolSymbolSpecificationContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(76);
+				setState(78);
 				match(VALID_CHAR);
 				}
 				break;
@@ -814,17 +823,17 @@ public class TuringMachineParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(80); 
+			setState(82); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(79);
+				setState(81);
 				match(VALID_CHAR);
 				}
 				}
-				setState(82); 
+				setState(84); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==VALID_CHAR );
@@ -842,27 +851,27 @@ public class TuringMachineParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20W\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20Y\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
 		"\f\t\f\4\r\t\r\3\2\3\2\3\2\3\3\3\3\7\3 \n\3\f\3\16\3#\13\3\3\4\3\4\3\4"+
-		"\3\4\3\4\3\4\3\4\3\4\3\4\3\5\6\5/\n\5\r\5\16\5\60\3\6\3\6\3\6\7\6\66\n"+
-		"\6\f\6\16\69\13\6\5\6;\n\6\3\7\3\7\3\7\3\7\5\7A\n\7\3\b\3\b\3\t\3\t\3"+
-		"\n\3\n\3\13\3\13\3\13\3\f\3\f\3\f\3\f\5\fP\n\f\3\r\6\rS\n\r\r\r\16\rT"+
-		"\3\r\2\2\16\2\4\6\b\n\f\16\20\22\24\26\30\2\2\2U\2\32\3\2\2\2\4\35\3\2"+
-		"\2\2\6$\3\2\2\2\b.\3\2\2\2\n:\3\2\2\2\f@\3\2\2\2\16B\3\2\2\2\20D\3\2\2"+
-		"\2\22F\3\2\2\2\24H\3\2\2\2\26O\3\2\2\2\30R\3\2\2\2\32\33\5\4\3\2\33\34"+
-		"\7\2\2\3\34\3\3\2\2\2\35!\5\6\4\2\36 \5\6\4\2\37\36\3\2\2\2 #\3\2\2\2"+
-		"!\37\3\2\2\2!\"\3\2\2\2\"\5\3\2\2\2#!\3\2\2\2$%\5\30\r\2%&\7\3\2\2&\'"+
-		"\5\26\f\2\'(\7\3\2\2()\5\n\6\2)*\7\3\2\2*+\5\b\5\2+,\7\4\2\2,\7\3\2\2"+
-		"\2-/\7\r\2\2.-\3\2\2\2/\60\3\2\2\2\60.\3\2\2\2\60\61\3\2\2\2\61\t\3\2"+
-		"\2\2\62\67\5\f\7\2\63\64\7\5\2\2\64\66\5\f\7\2\65\63\3\2\2\2\669\3\2\2"+
-		"\2\67\65\3\2\2\2\678\3\2\2\28;\3\2\2\29\67\3\2\2\2:\62\3\2\2\2:;\3\2\2"+
-		"\2;\13\3\2\2\2<A\5\16\b\2=A\5\20\t\2>A\5\22\n\2?A\5\24\13\2@<\3\2\2\2"+
-		"@=\3\2\2\2@>\3\2\2\2@?\3\2\2\2A\r\3\2\2\2BC\7\6\2\2C\17\3\2\2\2DE\7\7"+
-		"\2\2E\21\3\2\2\2FG\7\b\2\2G\23\3\2\2\2HI\7\t\2\2IJ\7\r\2\2J\25\3\2\2\2"+
-		"KP\7\n\2\2LP\7\13\2\2MP\7\f\2\2NP\7\r\2\2OK\3\2\2\2OL\3\2\2\2OM\3\2\2"+
-		"\2ON\3\2\2\2P\27\3\2\2\2QS\7\r\2\2RQ\3\2\2\2ST\3\2\2\2TR\3\2\2\2TU\3\2"+
-		"\2\2U\31\3\2\2\2\t!\60\67:@OT";
+		"\5\4(\n\4\3\4\3\4\3\4\3\4\3\4\3\4\3\5\6\5\61\n\5\r\5\16\5\62\3\6\3\6\3"+
+		"\6\7\68\n\6\f\6\16\6;\13\6\5\6=\n\6\3\7\3\7\3\7\3\7\5\7C\n\7\3\b\3\b\3"+
+		"\t\3\t\3\n\3\n\3\13\3\13\3\13\3\f\3\f\3\f\3\f\5\fR\n\f\3\r\6\rU\n\r\r"+
+		"\r\16\rV\3\r\2\2\16\2\4\6\b\n\f\16\20\22\24\26\30\2\2\2X\2\32\3\2\2\2"+
+		"\4\35\3\2\2\2\6$\3\2\2\2\b\60\3\2\2\2\n<\3\2\2\2\fB\3\2\2\2\16D\3\2\2"+
+		"\2\20F\3\2\2\2\22H\3\2\2\2\24J\3\2\2\2\26Q\3\2\2\2\30T\3\2\2\2\32\33\5"+
+		"\4\3\2\33\34\7\2\2\3\34\3\3\2\2\2\35!\5\6\4\2\36 \5\6\4\2\37\36\3\2\2"+
+		"\2 #\3\2\2\2!\37\3\2\2\2!\"\3\2\2\2\"\5\3\2\2\2#!\3\2\2\2$%\5\30\r\2%"+
+		"\'\7\3\2\2&(\5\26\f\2\'&\3\2\2\2\'(\3\2\2\2()\3\2\2\2)*\7\3\2\2*+\5\n"+
+		"\6\2+,\7\3\2\2,-\5\b\5\2-.\7\4\2\2.\7\3\2\2\2/\61\7\r\2\2\60/\3\2\2\2"+
+		"\61\62\3\2\2\2\62\60\3\2\2\2\62\63\3\2\2\2\63\t\3\2\2\2\649\5\f\7\2\65"+
+		"\66\7\5\2\2\668\5\f\7\2\67\65\3\2\2\28;\3\2\2\29\67\3\2\2\29:\3\2\2\2"+
+		":=\3\2\2\2;9\3\2\2\2<\64\3\2\2\2<=\3\2\2\2=\13\3\2\2\2>C\5\16\b\2?C\5"+
+		"\20\t\2@C\5\22\n\2AC\5\24\13\2B>\3\2\2\2B?\3\2\2\2B@\3\2\2\2BA\3\2\2\2"+
+		"C\r\3\2\2\2DE\7\6\2\2E\17\3\2\2\2FG\7\7\2\2G\21\3\2\2\2HI\7\b\2\2I\23"+
+		"\3\2\2\2JK\7\t\2\2KL\7\r\2\2L\25\3\2\2\2MR\7\n\2\2NR\7\13\2\2OR\7\f\2"+
+		"\2PR\7\r\2\2QM\3\2\2\2QN\3\2\2\2QO\3\2\2\2QP\3\2\2\2R\27\3\2\2\2SU\7\r"+
+		"\2\2TS\3\2\2\2UV\3\2\2\2VT\3\2\2\2VW\3\2\2\2W\31\3\2\2\2\n!\'\629<BQV";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

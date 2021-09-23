@@ -51,7 +51,7 @@ To change the grammar and regenerate the Antlr files:
 ##  Running the Console Application
 The console application allow a user to execute a machine they have defined. The help information is as follows:
 ```
-$ ./HeyNineteen.TuringMachine.ConsoleApp.exe --help
+$ ./HeyNineteen.TuringMachine.ConsoleApp.exe -f /c/Development/HeyNineteen/turing-machine/tests/HeyNineteen.TuringMachine.Library.Tests/AllPositiveIntegers.machine --help
 HeyNineteen.TuringMachine.ConsoleApp 1.0.0
 Copyright (C) 2021 HeyNineteen.TuringMachine.ConsoleApp
 USAGE:
@@ -65,6 +65,8 @@ Have machine wait for Enter key between each step:
   HeyNineteen.TuringMachine.ConsoleApp.exe --file my.machine --step-through
 Maintain history of machine state:
   HeyNineteen.TuringMachine.ConsoleApp.exe --file my.machine --history
+Output the parse tree of the input.:
+  HeyNineteen.TuringMachine.ConsoleApp.exe --file my.machine --tree
 
   -f, --file             Required. The name of the file containing the machine
                          definition.
@@ -79,6 +81,8 @@ Maintain history of machine state:
 
   -p, --pauseInterval    (Default: 0) Time in milliseconds the machine will
                          pause between executing steps.
+
+  -t, --tree             (Default: false) Output the parse tree of the input.
 
   --help                 Display this help screen.
 

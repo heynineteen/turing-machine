@@ -1,11 +1,12 @@
 ﻿namespace HeyNineteen.TuringMachine.Library
 {
-    using Antlr4.Runtime;
     using System;
+    using System.Diagnostics;
+    using Antlr4.Runtime;
 
     public class MachineBuilder
     {
-        public Machine Build(string input)
+        public (Machine Machine, string Tree) Build(string input)
         {
             try
             {
@@ -13,12 +14,14 @@
                 var lexer = new TuringMachineLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(lexer);
                 var parser = new TuringMachineParser(commonTokenStream);
-                TuringMachineParser.FileContext fileContext = parser.file();
+                var fileContext = parser.file();
 
-                WriteDebug(input, fileContext.ToStringTree(parser));
+                var tree = fileContext.ToStringTree(parser);
+
+                WriteDebug(input, tree);
 
                 var visitor = new TuringMachineVisitor();
-                return visitor.Visit( fileContext );
+                return (visitor.Visit(fileContext), tree);
             }
             catch (Exception e)
             {
@@ -26,10 +29,10 @@
             }
         }
 
-        [System.Diagnostics.Conditional("DEBUG")]
+        [Conditional("DEBUG")]
         private void WriteDebug(string input, string tree)
         {
-            System.Diagnostics.Debug.WriteLine($"INPUT: {input} PARSED AS {tree}");
+            Debug.WriteLine($"INPUT: {input} PARSED AS {tree}");
         }
     }
 }

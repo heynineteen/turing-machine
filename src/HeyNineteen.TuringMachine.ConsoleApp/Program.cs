@@ -40,7 +40,7 @@ namespace HeyNineteen.TuringMachine.ConsoleApp
             var inputFile = options.InputFile;
 
             var input = File.ReadAllText(inputFile);
-            var machine = new MachineBuilder().Build(input);
+            var (machine, tree) = new MachineBuilder().Build(input);
 
             var counter = 0;
             var pauseInterval = Math.Max(options.PauseInterval, 0);
@@ -49,6 +49,8 @@ namespace HeyNineteen.TuringMachine.ConsoleApp
                 ? () => { Console.WriteLine("{0} : {1}", ++counter, machine.State); }
                 : () => { Console.Write("\r{0} : {1}", ++counter, machine.State); };
         
+            if(options.ShowParseTree)
+                Console.WriteLine(tree);
 
             while(counter < options.StepCount)
             {

@@ -1,10 +1,13 @@
 ﻿// p.99
 
-begin     -> none -> P0    -> increment;
+// begin
+b -> none -> P0    -> i;
 
-increment -> 0    -> P1    -> rewind;
-increment -> 1    -> P0, L -> increment;
-increment -> none -> P1    -> rewind;
+//increment
+i -> 0    -> P1    -> r;
+i -> 1    -> P0, L -> i;
+i -> none -> P1    -> r;
 
-rewind    -> none -> L     -> increment;
-rewind    ->      -> R     -> rewind;
+//rewind
+r -> none -> L     -> i;
+r ->      -> R     -> r;

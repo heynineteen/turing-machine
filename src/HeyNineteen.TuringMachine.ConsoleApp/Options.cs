@@ -21,6 +21,9 @@
         [Option( 'p', "pauseInterval", Default = 0, HelpText = "Time in milliseconds the machine will pause between executing steps." )]
         public int PauseInterval { get; set; }
 
+        [Option('t', "tree", Default = false, HelpText = "Output the parse tree of the input.")]
+        public bool ShowParseTree { get; set; }
+
         [Usage( ApplicationAlias = "HeyNineteen.TuringMachine.ConsoleApp.exe" )]
         public static IEnumerable<Example> Examples =>
              new List<Example>
@@ -30,6 +33,7 @@
                 new ("Have machine pause for 500ms after each step", new Options { InputFile = "my.machine", PauseInterval = 500 }),
                 new ("Have machine wait for Enter key between each step", new Options { InputFile = "my.machine", StepThrough = true }),
                 new ("Maintain history of machine state", new Options { InputFile = "my.machine", KeepHistory = true }),
+                new ("Output the parse tree of the input.", new Options { InputFile = "my.machine", ShowParseTree= true }),
             };
     }
 }

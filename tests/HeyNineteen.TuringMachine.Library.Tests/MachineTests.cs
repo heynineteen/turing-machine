@@ -16,7 +16,7 @@
 
             var builder = new MachineBuilder();
 
-            var machine = builder.Build(input);
+            var machine = builder.Build(input).Machine;
 
             machine.Should().NotBeNull();
 
