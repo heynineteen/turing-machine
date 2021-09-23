@@ -5,22 +5,22 @@ namespace HeyNineteen.TuringMachine.Library
 
     public class SymbolSpecificationWildcard
     {
-        public static SymbolSpecificationWildcard None = new SymbolSpecificationWildcard("None");
-        public static SymbolSpecificationWildcard AnyOrNone = new SymbolSpecificationWildcard( "AnyOrNone" );
-        public static SymbolSpecificationWildcard Any = new SymbolSpecificationWildcard( "Any" );
+        public static SymbolSpecificationWildcard None = new( "None" );
+        public static SymbolSpecificationWildcard AnyOrNone = new( "AnyOrNone" );
+        public static SymbolSpecificationWildcard Any = new( "Any" );
 
-        private static readonly SymbolSpecificationWildcard[] All = new SymbolSpecificationWildcard[] {None, AnyOrNone, Any};
+        private static readonly SymbolSpecificationWildcard[] All = new SymbolSpecificationWildcard[] { None, AnyOrNone, Any };
 
         public string Name { get; }
 
-        private SymbolSpecificationWildcard(string name)
+        private SymbolSpecificationWildcard( string name )
         {
             Name = name;
         }
 
-        public static SymbolSpecificationWildcard FromName( string name)
+        public static SymbolSpecificationWildcard FromName( string name )
         {
-            return All.FirstOrDefault(s => s.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+            return All.FirstOrDefault( s => s.Name.Equals( name, StringComparison.InvariantCultureIgnoreCase ) );
         }
 
         public override string ToString() => Name;

@@ -1,7 +1,6 @@
 ﻿namespace HeyNineteen.TuringMachine.Library.Tests
 {
     using FluentAssertions;
-    using NSubstitute;
     using NUnit.Framework;
 
     [TestFixture]

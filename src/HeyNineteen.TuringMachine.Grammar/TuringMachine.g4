@@ -13,7 +13,7 @@ machine
     ;
     
 step
-    : mConfiguration '->' symbolSpecification '->' operations '->' finalMConfiguration ';'
+    : mConfiguration '->' (symbolSpecification)? '->' operations '->' finalMConfiguration ';'
     ;
     
 finalMConfiguration

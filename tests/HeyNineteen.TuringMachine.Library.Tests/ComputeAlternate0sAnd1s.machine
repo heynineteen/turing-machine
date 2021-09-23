@@ -1,4 +1,4 @@
-﻿b -> anyOrNone -> P0, R -> c;
-c -> anyOrNone -> R     -> e;
-e -> anyOrNone -> P1, R -> f;
-f -> anyOrNone -> R     -> b;
+﻿b ->  -> P0, R -> c;
+c ->  -> R     -> e;
+e ->  -> P1, R -> f;
+f ->  -> R     -> b;

@@ -13,6 +13,8 @@
         private readonly List<Operation> _currentOperations = new();
         private readonly List<Step> _steps = new();
 
+        private readonly SymbolSpecification _defaultSymbolSpecification = new (SymbolSpecificationWildcard.AnyOrNone);
+
         public override Machine VisitMachine(TuringMachineParser.MachineContext context)
         {
             base.VisitMachine(context);
@@ -55,7 +57,7 @@
             _currentMConfiguration = null;
             _currentOperations.Clear();
             _currentFinalMConfiguration = null;
-            _currentSymbolSpecification = null;
+            _currentSymbolSpecification = _defaultSymbolSpecification;
         }
 
         public override Machine VisitFinalMConfiguration(TuringMachineParser.FinalMConfigurationContext context)
