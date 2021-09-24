@@ -59,7 +59,7 @@ mConfiguration
     ;
     
 VALID_CHAR
-    : [A-Za-z0-9]
+    : [A-Za-z0-9\u0040\u002d\u005f] // @, -, _
     ;
 
 BLOCK_COMMENT

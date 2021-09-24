@@ -13,9 +13,11 @@
     <None Remove="ComputeAlternate0sAnd1s.state" />
     <None Remove="ComputeIncreasinglyLongerRuns.machine" />
     <None Remove="ComputeIncreasinglyLongerRuns.state" />
+    <None Remove="SquareRootOf2.machine" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="SquareRootOf2.machine" />
     <EmbeddedResource Include="AllPositiveIntegers.state" />
     <EmbeddedResource Include="AllPositiveIntegers.machine" />
     <EmbeddedResource Include="ComputeIncreasinglyLongerRuns.state" />
