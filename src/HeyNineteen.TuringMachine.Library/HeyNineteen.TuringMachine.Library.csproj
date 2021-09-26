@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="HeyNineteen.Core" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HeyNineteen.TuringMachine.Grammar\HeyNineteen.TuringMachine.Grammar.csproj" />
   </ItemGroup>
 
