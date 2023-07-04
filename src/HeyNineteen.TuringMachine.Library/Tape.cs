@@ -1,9 +1,8 @@
 namespace HeyNineteen.TuringMachine.Library
 {
-    using System;
+    using Core.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using Core.Collections;
 
     public class Tape
     {
@@ -33,15 +32,9 @@ namespace HeyNineteen.TuringMachine.Library
                 _values.AddForward(null);
         }
 
-        public void Erase()
-        {
-            _values[Position] = null;
-        }
+        public void Erase() => _values[Position] = null;
 
-        public void Print(char value)
-        {
-            _values[Position] = value;
-        }
+        public void Print(char value) => _values[Position] = value;
 
         public char? Read() => _values[Position];
     }
