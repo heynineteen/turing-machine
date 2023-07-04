@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -14,9 +14,11 @@
     <None Remove="ComputeIncreasinglyLongerRuns.machine" />
     <None Remove="ComputeIncreasinglyLongerRuns.state" />
     <None Remove="SquareRootOf2.machine" />
+    <None Remove="SquareRootOf2.state" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="SquareRootOf2.state" />
     <EmbeddedResource Include="SquareRootOf2.machine" />
     <EmbeddedResource Include="AllPositiveIntegers.state" />
     <EmbeddedResource Include="AllPositiveIntegers.machine" />

@@ -5,6 +5,7 @@ namespace HeyNineteen.TuringMachine.ConsoleApp
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Threading;
 
     class Program
@@ -46,9 +47,9 @@ namespace HeyNineteen.TuringMachine.ConsoleApp
             var pauseInterval = Math.Max(options.PauseInterval, 0);
             
             Action outputAction = options.KeepHistory
-                ? () => { Console.WriteLine("{0} : {1}", ++counter, machine.State); }
-                : () => { Console.Write("\r{0} : {1}", ++counter, machine.State); };
-        
+                ? () => { WriteNewLine(++counter, machine.State); }
+                : () => { WriteFromStartOfSameLine(++counter, machine.State); };
+
             if(options.ShowParseTree)
                 Console.WriteLine(tree);
 
@@ -62,6 +63,24 @@ namespace HeyNineteen.TuringMachine.ConsoleApp
                 else
                     Thread.Sleep(pauseInterval);
             }
+        }
+
+        public static void WriteNewLine(int count, string state)
+        {
+            Console.WriteLine("{0} : {1}", count, state);
+        }
+
+        public static string Blank = string.Empty;
+
+        public static void WriteFromStartOfSameLine(int count, string state)
+        {
+            var message = $"{count} : {state}";
+
+            if (Blank.Length < message.Length)
+                Blank = new string(' ', message.Length);
+
+            Console.Write("\r{0}", Blank);
+            Console.Write("\r{0}", message);
         }
     }
 }
