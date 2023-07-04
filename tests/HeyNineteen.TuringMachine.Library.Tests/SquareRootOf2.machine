@@ -1,0 +1,28 @@
+﻿// p.102
+
+// begin
+begin -> none -> P@, R, P1    -> new;
+
+// new
+new -> @      -> R            -> mark-digits;
+new ->        -> L            -> new;
+
+// mark-digits
+mark-digits -> 0    -> R, Px, R        -> mark-digits;
+mark-digits -> 1    -> R, Px, R        -> mark-digits;
+mark-digits -> none -> R, Pz, R, R, Pr -> find-x;
+
+// find-x
+find-x -> x ->  E   -> first-r;
+find-x -> @ ->      -> find-digits;
+find-x ->   -> L, L -> find-x;
+
+// first-r
+first-r -> r -> R, R -> last-r;
+first-r ->   -> R, R -> first-r;
+
+// last-r
+last-r -> r    -> R, R         -> last-r;
+last-r -> none -> Pr, R, R, Pr -> find-x;
+
+find-digits -> -> -> find-digits;

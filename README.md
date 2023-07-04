@@ -45,8 +45,8 @@ Prerequisites: you will need VirtualBox and Vagrant installed on your system.
 
 To change the grammar and regenerate the Antlr files:
  1. Make your changes to the [grammar file](https://github.com/heynineteen/turing-machine/blob/master/src/HeyNineteen.TuringMachine.Grammar/TuringMachine.g4).
- 2. In a bash shell, navigate to the root of the `HeyNineteen.TuringMachine.Grammar` project.
- 3. Execute `./generateAntlrFiles.sh`
+ 2. In a shell, navigate to the root of the `HeyNineteen.TuringMachine.Grammar` project.
+ 3. In Linux, execute `./generateAntlrFiles.sh` or in Powershell execute `generateAntlrFiles.ps1`.
  4. Make any necessary changes to the [TuringMachineVisitor.cs file](https://github.com/heynineteen/turing-machine/blob/master/src/HeyNineteen.TuringMachine.Library/TuringMachineVisitor.cs) that result from the change to the grammar.
 ##  Running the Console Application
 The console application allow a user to execute a machine they have defined. The help information is as follows:

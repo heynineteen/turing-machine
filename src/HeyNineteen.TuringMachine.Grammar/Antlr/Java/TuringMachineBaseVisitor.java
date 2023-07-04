@@ -1,4 +1,4 @@
-// Generated from TuringMachine.g4 by ANTLR 4.9.2
+// Generated from TuringMachine.g4 by ANTLR 4.13.0
 
 #pragma warning disable 3021
 
@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * @param <T> The return type of the visit operation. Use {@link Void} for
  * operations with no return type.
  */
+@SuppressWarnings("CheckReturnValue")
 public class TuringMachineBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements TuringMachineVisitor<T> {
 	/**
 	 * {@inheritDoc}

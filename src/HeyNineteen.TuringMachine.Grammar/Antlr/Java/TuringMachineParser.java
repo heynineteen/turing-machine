@@ -1,4 +1,4 @@
-// Generated from TuringMachine.g4 by ANTLR 4.9.2
+// Generated from TuringMachine.g4 by ANTLR 4.13.0
 
 #pragma warning disable 3021
 
@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
 
-@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
+@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class TuringMachineParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.13.0", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -97,6 +97,7 @@ public class TuringMachineParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class FileContext extends ParserRuleContext {
 		public MachineContext machine() {
 			return getRuleContext(MachineContext.class,0);
@@ -144,6 +145,7 @@ public class TuringMachineParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class MachineContext extends ParserRuleContext {
 		public List<StepContext> step() {
 			return getRuleContexts(StepContext.class);
@@ -206,6 +208,7 @@ public class TuringMachineParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class StepContext extends ParserRuleContext {
 		public MConfigurationContext mConfiguration() {
 			return getRuleContext(MConfigurationContext.class,0);
@@ -252,7 +255,7 @@ public class TuringMachineParser extends Parser {
 			setState(37);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << VALID_CHAR))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 3840L) != 0)) {
 				{
 				setState(36);
 				symbolSpecification();
@@ -282,6 +285,7 @@ public class TuringMachineParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class FinalMConfigurationContext extends ParserRuleContext {
 		public List<TerminalNode> VALID_CHAR() { return getTokens(TuringMachineParser.VALID_CHAR); }
 		public TerminalNode VALID_CHAR(int i) {
@@ -340,6 +344,7 @@ public class TuringMachineParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class OperationsContext extends ParserRuleContext {
 		public List<OperationContext> operation() {
 			return getRuleContexts(OperationContext.class);
@@ -376,7 +381,7 @@ public class TuringMachineParser extends Parser {
 			setState(58);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__4) | (1L << T__5) | (1L << T__6))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 240L) != 0)) {
 				{
 				setState(50);
 				operation();
@@ -412,6 +417,7 @@ public class TuringMachineParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class OperationContext extends ParserRuleContext {
 		public MoveLeftContext moveLeft() {
 			return getRuleContext(MoveLeftContext.class,0);
@@ -494,6 +500,7 @@ public class TuringMachineParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class MoveLeftContext extends ParserRuleContext {
 		public MoveLeftContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -535,6 +542,7 @@ public class TuringMachineParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class MoveRightContext extends ParserRuleContext {
 		public MoveRightContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -576,6 +584,7 @@ public class TuringMachineParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class EraseContext extends ParserRuleContext {
 		public EraseContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -617,6 +626,7 @@ public class TuringMachineParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class PrintContext extends ParserRuleContext {
 		public TerminalNode VALID_CHAR() { return getToken(TuringMachineParser.VALID_CHAR, 0); }
 		public PrintContext(ParserRuleContext parent, int invokingState) {
@@ -661,6 +671,7 @@ public class TuringMachineParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class SymbolSpecificationContext extends ParserRuleContext {
 		public SymbolSpecificationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -672,6 +683,7 @@ public class TuringMachineParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
+	@SuppressWarnings("CheckReturnValue")
 	public static class SymbolSymbolSpecificationContext extends SymbolSpecificationContext {
 		public TerminalNode VALID_CHAR() { return getToken(TuringMachineParser.VALID_CHAR, 0); }
 		public SymbolSymbolSpecificationContext(SymbolSpecificationContext ctx) { copyFrom(ctx); }
@@ -689,6 +701,7 @@ public class TuringMachineParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	@SuppressWarnings("CheckReturnValue")
 	public static class NoneSymbolSpecificationContext extends SymbolSpecificationContext {
 		public NoneSymbolSpecificationContext(SymbolSpecificationContext ctx) { copyFrom(ctx); }
 		@Override
@@ -705,6 +718,7 @@ public class TuringMachineParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	@SuppressWarnings("CheckReturnValue")
 	public static class AnySymbolSpecificationContext extends SymbolSpecificationContext {
 		public AnySymbolSpecificationContext(SymbolSpecificationContext ctx) { copyFrom(ctx); }
 		@Override
@@ -721,6 +735,7 @@ public class TuringMachineParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	@SuppressWarnings("CheckReturnValue")
 	public static class AnyOrNoneSymbolSpecificationContext extends SymbolSpecificationContext {
 		public AnyOrNoneSymbolSpecificationContext(SymbolSpecificationContext ctx) { copyFrom(ctx); }
 		@Override
@@ -792,6 +807,7 @@ public class TuringMachineParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class MConfigurationContext extends ParserRuleContext {
 		public List<TerminalNode> VALID_CHAR() { return getTokens(TuringMachineParser.VALID_CHAR); }
 		public TerminalNode VALID_CHAR(int i) {
@@ -851,27 +867,55 @@ public class TuringMachineParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20Y\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
-		"\f\t\f\4\r\t\r\3\2\3\2\3\2\3\3\3\3\7\3 \n\3\f\3\16\3#\13\3\3\4\3\4\3\4"+
-		"\5\4(\n\4\3\4\3\4\3\4\3\4\3\4\3\4\3\5\6\5\61\n\5\r\5\16\5\62\3\6\3\6\3"+
-		"\6\7\68\n\6\f\6\16\6;\13\6\5\6=\n\6\3\7\3\7\3\7\3\7\5\7C\n\7\3\b\3\b\3"+
-		"\t\3\t\3\n\3\n\3\13\3\13\3\13\3\f\3\f\3\f\3\f\5\fR\n\f\3\r\6\rU\n\r\r"+
-		"\r\16\rV\3\r\2\2\16\2\4\6\b\n\f\16\20\22\24\26\30\2\2\2X\2\32\3\2\2\2"+
-		"\4\35\3\2\2\2\6$\3\2\2\2\b\60\3\2\2\2\n<\3\2\2\2\fB\3\2\2\2\16D\3\2\2"+
-		"\2\20F\3\2\2\2\22H\3\2\2\2\24J\3\2\2\2\26Q\3\2\2\2\30T\3\2\2\2\32\33\5"+
-		"\4\3\2\33\34\7\2\2\3\34\3\3\2\2\2\35!\5\6\4\2\36 \5\6\4\2\37\36\3\2\2"+
-		"\2 #\3\2\2\2!\37\3\2\2\2!\"\3\2\2\2\"\5\3\2\2\2#!\3\2\2\2$%\5\30\r\2%"+
-		"\'\7\3\2\2&(\5\26\f\2\'&\3\2\2\2\'(\3\2\2\2()\3\2\2\2)*\7\3\2\2*+\5\n"+
-		"\6\2+,\7\3\2\2,-\5\b\5\2-.\7\4\2\2.\7\3\2\2\2/\61\7\r\2\2\60/\3\2\2\2"+
-		"\61\62\3\2\2\2\62\60\3\2\2\2\62\63\3\2\2\2\63\t\3\2\2\2\649\5\f\7\2\65"+
-		"\66\7\5\2\2\668\5\f\7\2\67\65\3\2\2\28;\3\2\2\29\67\3\2\2\29:\3\2\2\2"+
-		":=\3\2\2\2;9\3\2\2\2<\64\3\2\2\2<=\3\2\2\2=\13\3\2\2\2>C\5\16\b\2?C\5"+
-		"\20\t\2@C\5\22\n\2AC\5\24\13\2B>\3\2\2\2B?\3\2\2\2B@\3\2\2\2BA\3\2\2\2"+
-		"C\r\3\2\2\2DE\7\6\2\2E\17\3\2\2\2FG\7\7\2\2G\21\3\2\2\2HI\7\b\2\2I\23"+
-		"\3\2\2\2JK\7\t\2\2KL\7\r\2\2L\25\3\2\2\2MR\7\n\2\2NR\7\13\2\2OR\7\f\2"+
-		"\2PR\7\r\2\2QM\3\2\2\2QN\3\2\2\2QO\3\2\2\2QP\3\2\2\2R\27\3\2\2\2SU\7\r"+
-		"\2\2TS\3\2\2\2UV\3\2\2\2VT\3\2\2\2VW\3\2\2\2W\31\3\2\2\2\n!\'\629<BQV";
+		"\u0004\u0001\u000eW\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
+		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
+		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0001"+
+		"\u0000\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0005\u0001\u001e"+
+		"\b\u0001\n\u0001\f\u0001!\t\u0001\u0001\u0002\u0001\u0002\u0001\u0002"+
+		"\u0003\u0002&\b\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002"+
+		"\u0001\u0002\u0001\u0002\u0001\u0003\u0004\u0003/\b\u0003\u000b\u0003"+
+		"\f\u00030\u0001\u0004\u0001\u0004\u0001\u0004\u0005\u00046\b\u0004\n\u0004"+
+		"\f\u00049\t\u0004\u0003\u0004;\b\u0004\u0001\u0005\u0001\u0005\u0001\u0005"+
+		"\u0001\u0005\u0003\u0005A\b\u0005\u0001\u0006\u0001\u0006\u0001\u0007"+
+		"\u0001\u0007\u0001\b\u0001\b\u0001\t\u0001\t\u0001\t\u0001\n\u0001\n\u0001"+
+		"\n\u0001\n\u0003\nP\b\n\u0001\u000b\u0004\u000bS\b\u000b\u000b\u000b\f"+
+		"\u000bT\u0001\u000b\u0000\u0000\f\u0000\u0002\u0004\u0006\b\n\f\u000e"+
+		"\u0010\u0012\u0014\u0016\u0000\u0000V\u0000\u0018\u0001\u0000\u0000\u0000"+
+		"\u0002\u001b\u0001\u0000\u0000\u0000\u0004\"\u0001\u0000\u0000\u0000\u0006"+
+		".\u0001\u0000\u0000\u0000\b:\u0001\u0000\u0000\u0000\n@\u0001\u0000\u0000"+
+		"\u0000\fB\u0001\u0000\u0000\u0000\u000eD\u0001\u0000\u0000\u0000\u0010"+
+		"F\u0001\u0000\u0000\u0000\u0012H\u0001\u0000\u0000\u0000\u0014O\u0001"+
+		"\u0000\u0000\u0000\u0016R\u0001\u0000\u0000\u0000\u0018\u0019\u0003\u0002"+
+		"\u0001\u0000\u0019\u001a\u0005\u0000\u0000\u0001\u001a\u0001\u0001\u0000"+
+		"\u0000\u0000\u001b\u001f\u0003\u0004\u0002\u0000\u001c\u001e\u0003\u0004"+
+		"\u0002\u0000\u001d\u001c\u0001\u0000\u0000\u0000\u001e!\u0001\u0000\u0000"+
+		"\u0000\u001f\u001d\u0001\u0000\u0000\u0000\u001f \u0001\u0000\u0000\u0000"+
+		" \u0003\u0001\u0000\u0000\u0000!\u001f\u0001\u0000\u0000\u0000\"#\u0003"+
+		"\u0016\u000b\u0000#%\u0005\u0001\u0000\u0000$&\u0003\u0014\n\u0000%$\u0001"+
+		"\u0000\u0000\u0000%&\u0001\u0000\u0000\u0000&\'\u0001\u0000\u0000\u0000"+
+		"\'(\u0005\u0001\u0000\u0000()\u0003\b\u0004\u0000)*\u0005\u0001\u0000"+
+		"\u0000*+\u0003\u0006\u0003\u0000+,\u0005\u0002\u0000\u0000,\u0005\u0001"+
+		"\u0000\u0000\u0000-/\u0005\u000b\u0000\u0000.-\u0001\u0000\u0000\u0000"+
+		"/0\u0001\u0000\u0000\u00000.\u0001\u0000\u0000\u000001\u0001\u0000\u0000"+
+		"\u00001\u0007\u0001\u0000\u0000\u000027\u0003\n\u0005\u000034\u0005\u0003"+
+		"\u0000\u000046\u0003\n\u0005\u000053\u0001\u0000\u0000\u000069\u0001\u0000"+
+		"\u0000\u000075\u0001\u0000\u0000\u000078\u0001\u0000\u0000\u00008;\u0001"+
+		"\u0000\u0000\u000097\u0001\u0000\u0000\u0000:2\u0001\u0000\u0000\u0000"+
+		":;\u0001\u0000\u0000\u0000;\t\u0001\u0000\u0000\u0000<A\u0003\f\u0006"+
+		"\u0000=A\u0003\u000e\u0007\u0000>A\u0003\u0010\b\u0000?A\u0003\u0012\t"+
+		"\u0000@<\u0001\u0000\u0000\u0000@=\u0001\u0000\u0000\u0000@>\u0001\u0000"+
+		"\u0000\u0000@?\u0001\u0000\u0000\u0000A\u000b\u0001\u0000\u0000\u0000"+
+		"BC\u0005\u0004\u0000\u0000C\r\u0001\u0000\u0000\u0000DE\u0005\u0005\u0000"+
+		"\u0000E\u000f\u0001\u0000\u0000\u0000FG\u0005\u0006\u0000\u0000G\u0011"+
+		"\u0001\u0000\u0000\u0000HI\u0005\u0007\u0000\u0000IJ\u0005\u000b\u0000"+
+		"\u0000J\u0013\u0001\u0000\u0000\u0000KP\u0005\b\u0000\u0000LP\u0005\t"+
+		"\u0000\u0000MP\u0005\n\u0000\u0000NP\u0005\u000b\u0000\u0000OK\u0001\u0000"+
+		"\u0000\u0000OL\u0001\u0000\u0000\u0000OM\u0001\u0000\u0000\u0000ON\u0001"+
+		"\u0000\u0000\u0000P\u0015\u0001\u0000\u0000\u0000QS\u0005\u000b\u0000"+
+		"\u0000RQ\u0001\u0000\u0000\u0000ST\u0001\u0000\u0000\u0000TR\u0001\u0000"+
+		"\u0000\u0000TU\u0001\u0000\u0000\u0000U\u0017\u0001\u0000\u0000\u0000"+
+		"\b\u001f%07:@OT";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
