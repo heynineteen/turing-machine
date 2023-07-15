@@ -2,6 +2,7 @@
 
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 public class TuringMachineVisitor : TuringMachineBaseVisitor<Machine>
@@ -30,7 +31,13 @@ public class TuringMachineVisitor : TuringMachineBaseVisitor<Machine>
         var orphanFinalConfigurations = finalConfigurations.Except(mConfigurations).ToList();
 
         if (orphanFinalConfigurations.Any())
-            throw new BuildException(BuildExceptionMessage(orphanFinalConfigurations));
+            ThrowBuildExceptionFromOrphanFinalConfigurations(orphanFinalConfigurations);
+    }
+
+    [DoesNotReturn]
+    private void ThrowBuildExceptionFromOrphanFinalConfigurations(List<MConfiguration> orphanFinalConfigurations)
+    {
+        throw new BuildException(BuildExceptionMessage(orphanFinalConfigurations));
 
         string BuildExceptionMessage(IEnumerable<MConfiguration> orphans)
         {
