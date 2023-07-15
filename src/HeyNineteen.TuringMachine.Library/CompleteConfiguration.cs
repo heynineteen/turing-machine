@@ -27,19 +27,21 @@ namespace HeyNineteen.TuringMachine.Library
             var state = _tape.State;
 
             if (!state.Any())
-                return _mConfiguration;
+                return Wrap(_mConfiguration);
 
             var sb = new StringBuilder();
 
             for (var i = 0; i < state.Count; i++)
             {
                 if (_tape.Position == i)
-                    sb.Append(_mConfiguration);
+                    sb.Append(Wrap(_mConfiguration));
 
                 sb.Append(state[i] ?? ' ');
             }
 
             return sb.ToString();
+
+            string Wrap(string value) => $"[{value}]";
         }
     }
 }
