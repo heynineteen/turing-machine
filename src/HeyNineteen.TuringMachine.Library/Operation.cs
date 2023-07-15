@@ -1,7 +1,6 @@
-namespace HeyNineteen.TuringMachine.Library
+namespace HeyNineteen.TuringMachine.Library;
+
+public abstract class Operation
 {
-    public abstract class Operation
-    {
-        public abstract void Execute(Tape tape);
-    }
+    public abstract void Execute(Tape tape);
 }

@@ -1,131 +1,130 @@
-﻿namespace HeyNineteen.TuringMachine.Library
+﻿namespace HeyNineteen.TuringMachine.Library;
+
+using Antlr4.Runtime.Tree;
+using System.Collections.Generic;
+using System.Linq;
+
+public class TuringMachineVisitor : TuringMachineBaseVisitor<Machine>
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Antlr4.Runtime.Tree;
+    private Machine _machine;
+    private MConfiguration _currentMConfiguration;
+    private SymbolSpecification _currentSymbolSpecification;
+    private MConfiguration _currentFinalMConfiguration;
+    private readonly List<Operation> _currentOperations = new();
+    private readonly List<Step> _steps = new();
 
-    public class TuringMachineVisitor : TuringMachineBaseVisitor<Machine>
+    private readonly SymbolSpecification _defaultSymbolSpecification = new(SymbolSpecificationWildcard.AnyOrNone);
+
+    public override Machine VisitMachine(TuringMachineParser.MachineContext context)
     {
-        private Machine _machine;
-        private MConfiguration _currentMConfiguration;
-        private SymbolSpecification _currentSymbolSpecification;
-        private MConfiguration _currentFinalMConfiguration;
-        private readonly List<Operation> _currentOperations = new();
-        private readonly List<Step> _steps = new();
+        base.VisitMachine(context);
+        ValidateSteps();
+        return _machine = new Machine(_steps);
+    }
 
-        private readonly SymbolSpecification _defaultSymbolSpecification = new (SymbolSpecificationWildcard.AnyOrNone);
+    private void ValidateSteps()
+    {
+        var finalConfigurations = _steps.Select(s => s.Behavior.FinalMConfiguration);
+        var mConfigurations = _steps.Select(s => s.ConfigurationSpecification.MConfiguration);
 
-        public override Machine VisitMachine(TuringMachineParser.MachineContext context)
+        var orphanFinalConfigurations = finalConfigurations.Except(mConfigurations).ToList();
+
+        if (orphanFinalConfigurations.Any())
+            throw new BuildException(BuildExceptionMessage(orphanFinalConfigurations));
+
+        string BuildExceptionMessage(IEnumerable<MConfiguration> orphans)
         {
-            base.VisitMachine(context);
-            ValidateSteps();
-            return _machine = new Machine(_steps);
+            var orphanCsv = string.Join(", ", orphans.Select(o => $"'{o.Value}'"));
+            return $"The following FinalConfigurations could not be matched with an MConfiguration: {orphanCsv}.";
         }
+    }
 
-        private void ValidateSteps()
-        {
-            var finalConfigurations = _steps.Select(s => s.Behavior.FinalMConfiguration);
-            var mConfigurations = _steps.Select(s => s.ConfigurationSpecification.MConfiguration);
+    public override Machine VisitStep(TuringMachineParser.StepContext context)
+    {
+        ClearCurrentState();
 
-            var orphanFinalConfigurations = finalConfigurations.Except(mConfigurations).ToList();
+        base.VisitStep(context);
 
-            if (orphanFinalConfigurations.Any())
-                throw new BuildException(BuildExceptionMessage(orphanFinalConfigurations));
+        _steps.Add(
+            new Step(new ConfigurationSpecification(_currentMConfiguration, _currentSymbolSpecification),
+                new Behavior(_currentOperations, _currentFinalMConfiguration)));
 
-            string BuildExceptionMessage(IEnumerable<MConfiguration> orphans)
-            {
-                var orphanCsv = string.Join(", ", orphans.Select(o => $"'{o.Value}'"));
-                return $"The following FinalConfigurations could not be matched with an MConfiguration: {orphanCsv}.";
-            }
-        }
+        return null;
+    }
 
-        public override Machine VisitStep(TuringMachineParser.StepContext context)
-        {
-            ClearCurrentState();
+    private void ClearCurrentState()
+    {
+        _currentMConfiguration = null;
+        _currentOperations.Clear();
+        _currentFinalMConfiguration = null;
+        _currentSymbolSpecification = _defaultSymbolSpecification;
+    }
 
-            base.VisitStep(context);
+    public override Machine VisitFinalMConfiguration(TuringMachineParser.FinalMConfigurationContext context)
+    {
+        _currentFinalMConfiguration = context.GetText();
+        return null;
+    }
 
-            _steps.Add(
-                new Step(new ConfigurationSpecification(_currentMConfiguration, _currentSymbolSpecification),
-                    new Behavior(_currentOperations, _currentFinalMConfiguration)));
+    public override Machine VisitMoveLeft(TuringMachineParser.MoveLeftContext context)
+    {
+        _currentOperations.Add(new MoveLeft());
+        return null;
+    }
 
-            return null;
-        }
+    public override Machine VisitMoveRight(TuringMachineParser.MoveRightContext context)
+    {
+        _currentOperations.Add(new MoveRight());
+        return null;
+    }
 
-        private void ClearCurrentState()
-        {
-            _currentMConfiguration = null;
-            _currentOperations.Clear();
-            _currentFinalMConfiguration = null;
-            _currentSymbolSpecification = _defaultSymbolSpecification;
-        }
+    public override Machine VisitErase(TuringMachineParser.EraseContext context)
+    {
+        _currentOperations.Add(new Erase());
+        return null;
+    }
 
-        public override Machine VisitFinalMConfiguration(TuringMachineParser.FinalMConfigurationContext context)
-        {
-            _currentFinalMConfiguration = context.GetText();
-            return null;
-        }
+    public override Machine VisitPrint(TuringMachineParser.PrintContext context)
+    {
+        var printChar = context.GetChild(1).GetText()[0];
+        _currentOperations.Add(new Print(printChar));
+        return null;
+    }
 
-        public override Machine VisitMoveLeft(TuringMachineParser.MoveLeftContext context)
-        {
-            _currentOperations.Add(new MoveLeft());
-            return null;
-        }
+    public override Machine VisitNoneSymbolSpecification(TuringMachineParser.NoneSymbolSpecificationContext context)
+    {
+        _currentSymbolSpecification = SymbolSpecificationWildcard.None;
+        return null;
+    }
 
-        public override Machine VisitMoveRight(TuringMachineParser.MoveRightContext context)
-        {
-            _currentOperations.Add(new MoveRight());
-            return null;
-        }
+    public override Machine VisitAnySymbolSpecification(TuringMachineParser.AnySymbolSpecificationContext context)
+    {
+        _currentSymbolSpecification = SymbolSpecificationWildcard.Any;
+        return null;
+    }
 
-        public override Machine VisitErase(TuringMachineParser.EraseContext context)
-        {
-            _currentOperations.Add(new Erase());
-            return null;
-        }
+    public override Machine VisitAnyOrNoneSymbolSpecification(TuringMachineParser.AnyOrNoneSymbolSpecificationContext context)
+    {
+        _currentSymbolSpecification = SymbolSpecificationWildcard.AnyOrNone;
+        return null;
+    }
 
-        public override Machine VisitPrint(TuringMachineParser.PrintContext context)
-        {
-            var printChar = context.GetChild(1).GetText()[0];
-            _currentOperations.Add(new Print(printChar));
-            return null;
-        }
+    public override Machine VisitSymbolSymbolSpecification(TuringMachineParser.SymbolSymbolSpecificationContext context)
+    {
+        _currentSymbolSpecification = context.GetText()[0];
+        return null;
+    }
 
-        public override Machine VisitNoneSymbolSpecification(TuringMachineParser.NoneSymbolSpecificationContext context)
-        {
-            _currentSymbolSpecification = SymbolSpecificationWildcard.None;
-            return null;
-        }
+    public override Machine VisitMConfiguration(TuringMachineParser.MConfigurationContext context)
+    {
+        _currentMConfiguration = context.GetText();
+        return null;
+    }
 
-        public override Machine VisitAnySymbolSpecification(TuringMachineParser.AnySymbolSpecificationContext context)
-        {
-            _currentSymbolSpecification = SymbolSpecificationWildcard.Any;
-            return null;
-        }
+    public override Machine Visit(IParseTree tree)
+    {
+        base.Visit(tree);
 
-        public override Machine VisitAnyOrNoneSymbolSpecification(TuringMachineParser.AnyOrNoneSymbolSpecificationContext context)
-        {
-            _currentSymbolSpecification = SymbolSpecificationWildcard.AnyOrNone;
-            return null;
-        }
-
-        public override Machine VisitSymbolSymbolSpecification(TuringMachineParser.SymbolSymbolSpecificationContext context)
-        {
-            _currentSymbolSpecification = context.GetText()[0];
-            return null;
-        }
-
-        public override Machine VisitMConfiguration(TuringMachineParser.MConfigurationContext context)
-        {
-            _currentMConfiguration = context.GetText();
-            return null;
-        }
-
-        public override Machine Visit(IParseTree tree)
-        {
-            base.Visit(tree);
-
-            return _machine;
-        }
+        return _machine;
     }
 }

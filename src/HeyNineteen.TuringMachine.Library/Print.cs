@@ -1,17 +1,16 @@
-namespace HeyNineteen.TuringMachine.Library
+namespace HeyNineteen.TuringMachine.Library;
+
+using System.Diagnostics;
+
+[DebuggerDisplay("P{_symbol}")]
+public class Print : Operation
 {
-    using System.Diagnostics;
+    private readonly char _symbol;
 
-    [DebuggerDisplay("P{_symbol}")]
-    public class Print : Operation
+    public Print(char symbol)
     {
-        private readonly char _symbol;
-
-        public Print(char symbol)
-        {
-            _symbol = symbol;
-        }
-
-        public override void Execute(Tape tape) => tape.Print(_symbol);
+        _symbol = symbol;
     }
+
+    public override void Execute(Tape tape) => tape.Print(_symbol);
 }

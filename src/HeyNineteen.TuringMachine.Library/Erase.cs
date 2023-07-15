@@ -1,10 +1,9 @@
-namespace HeyNineteen.TuringMachine.Library
-{
-    using System.Diagnostics;
+namespace HeyNineteen.TuringMachine.Library;
 
-    [DebuggerDisplay( "E" )]
-    public class Erase : Operation
-    {
-        public override void Execute( Tape tape ) => tape.Erase();
-    }
+using System.Diagnostics;
+
+[DebuggerDisplay("E")]
+public class Erase : Operation
+{
+    public override void Execute(Tape tape) => tape.Erase();
 }
