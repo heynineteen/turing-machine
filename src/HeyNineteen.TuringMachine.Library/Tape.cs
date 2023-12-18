@@ -1,15 +1,12 @@
 namespace HeyNineteen.TuringMachine.Library;
 
-using System;
 using Core.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 public class Tape
 {
-    private readonly TwoWayList<char?> _values = new(new char?[] { null }, null);
-
     private readonly Dictionary<int, char> _values2 = new();
 
     public TapeState GetState() => GenerateState();
@@ -33,7 +30,7 @@ public class Tape
         }
 
         int TranslatePosition() =>
-            Position + Math.Abs(Math.Min(_values.LowestIndex ?? 0, 0));
+            Position + Math.Abs(Math.Min(LowestPosition, 0));
     }
 
     public int Position { get; private set; }

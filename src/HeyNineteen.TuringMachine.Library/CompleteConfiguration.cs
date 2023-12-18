@@ -22,28 +22,6 @@ public class CompleteConfiguration
         return this;
     }
 
-    public override string ToString()
-    {
-        var state = _tape.GetState();
-
-        if (!state.Values.Any())
-            return Wrap(_mConfiguration);
-
-        var sb = new StringBuilder();
-
-        for (var i = 0; i < state.Values.Length; i++)
-        {
-            if (_tape.Position == i)
-                sb.Append(Wrap(_mConfiguration));
-
-            sb.Append(state.Values[i] ?? ' ');
-        }
-
-        return sb.ToString();
-
-        string Wrap(string value) => $"[{value}]";
-    }
-
     public string TapeValues => _tape.AsString();
 
     public int TapePosition => _tape.GetState().HeadPosition;

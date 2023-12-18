@@ -1,8 +1,20 @@
 {
   "profiles": {
-    "HeyNineteen.TuringMachine.ConsoleApp": {
+    "HeyNineteen.TuringMachine.ConsoleApp: ComputeIncreasinglyLongerRuns": {
       "commandName": "Project",
-      "commandLineArgs": " -f C:\\Development\\HeyNineteen\\turing-machine\\tests\\HeyNineteen.TuringMachine.Library.Tests\\ComputeIncreasinglyLongerRuns.machine -p 100"
+      "commandLineArgs": " -f C:\\dev\\HeyNineteen\\turing-machine\\tests\\HeyNineteen.TuringMachine.Library.Tests\\ComputeIncreasinglyLongerRuns.machine -p 100"
+    },
+    "HeyNineteen.TuringMachine.ConsoleApp: AllPositiveIntegers": {
+      "commandName": "Project",
+      "commandLineArgs": " -f C:\\dev\\HeyNineteen\\turing-machine\\tests\\HeyNineteen.TuringMachine.Library.Tests\\AllPositiveIntegers.machine -p 100 -s"
+    },
+    "HeyNineteen.TuringMachine.ConsoleApp: ComputeAlternate0sAnd1s": {
+      "commandName": "Project",
+      "commandLineArgs": " -f C:\\dev\\HeyNineteen\\turing-machine\\tests\\HeyNineteen.TuringMachine.Library.Tests\\ComputeAlternate0sAnd1s.machine -p 100"
+    },
+    "HeyNineteen.TuringMachine.ConsoleApp: SquareRootOf2": {
+      "commandName": "Project",
+      "commandLineArgs": " -f C:\\dev\\HeyNineteen\\turing-machine\\tests\\HeyNineteen.TuringMachine.Library.Tests\\SquareRootOf2.machine -p 0 -c 100000"
     }
   }
 }
