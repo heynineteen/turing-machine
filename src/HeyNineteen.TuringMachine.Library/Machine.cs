@@ -37,7 +37,8 @@ public class Machine
         }
 
         _currentMConfiguration = step.Behavior.FinalMConfiguration;
+        _completeConfiguration.With(_currentMConfiguration);
     }
 
-    public string State => _completeConfiguration.With(_currentMConfiguration).ToString();
+    public CompleteConfiguration State => _completeConfiguration;
 }

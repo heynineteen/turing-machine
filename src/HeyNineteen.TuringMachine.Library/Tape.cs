@@ -1,40 +1,54 @@
 namespace HeyNineteen.TuringMachine.Library;
 
+using System;
 using Core.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 public class Tape
 {
     private readonly TwoWayList<char?> _values = new(new char?[] { null }, null);
 
-    public List<char?> State => _values.ToList();
+    private readonly Dictionary<int, char> _values2 = new();
+
+    public TapeState GetState() => GenerateState();
+
+    private TapeState GenerateState()
+    {
+
+        return new TapeState(GenerateCharacterArray(), TranslatePosition());
+
+        char?[] GenerateCharacterArray()
+        {
+            var result = new char?[HighestPosition - LowestPosition + 1];
+            var arrayIndex = 0;
+            for (var i = LowestPosition; i <= HighestPosition; i++, arrayIndex++)
+            {
+                if (_values2.TryGetValue(i, out var value))
+                    result[arrayIndex] = value;
+            }
+
+            return result;
+        }
+
+        int TranslatePosition() =>
+            Position + Math.Abs(Math.Min(_values.LowestIndex ?? 0, 0));
+    }
 
     public int Position { get; private set; }
 
-    public void MoveLeft()
-    {
-        Position--;
-        EnsureCapacity();
-    }
+    public int LowestPosition => Math.Min(Position, _values2.Any() ? _values2.Keys.Min() : Position);
 
-    public void MoveRight()
-    {
-        Position++;
-        EnsureCapacity();
-    }
+    public int HighestPosition => Math.Max(Position, _values2.Any() ? _values2.Keys.Max() : Position);
 
-    private void EnsureCapacity()
-    {
-        if (Position < _values.LowestIndex)
-            _values.AddBack(null);
-        else if (Position > _values.HightestIndex)
-            _values.AddForward(null);
-    }
+    public void MoveLeft() => Position--;
 
-    public void Erase() => _values[Position] = null;
+    public void MoveRight() => Position++;
 
-    public void Print(char value) => _values[Position] = value;
+    public void Erase() => _values2.Remove(Position);
 
-    public char? Read() => _values[Position];
+    public void Print(char value) => _values2[Position] = value;
+
+    public char? Read() => _values2.ContainsKey(Position) ? _values2[Position] : null;
 }
