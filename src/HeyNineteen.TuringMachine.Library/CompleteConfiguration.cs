@@ -1,8 +1,6 @@
 namespace HeyNineteen.TuringMachine.Library;
 
 using System;
-using System.Linq;
-using System.Text;
 
 public class CompleteConfiguration
 {
@@ -22,26 +20,13 @@ public class CompleteConfiguration
         return this;
     }
 
-    public string TapeValues => _tape.AsString();
+    public ReadOnlySpan<char> TapeValues => _tape.Values;
 
-    public int TapePosition => _tape.GetState().HeadPosition;
+    public ReadOnlySpan<char> TapeAdjustedValues => _tape.AdjustedValues;
+
+    public int TapePosition => _tape.Position;
+
+    public int TapeAdjustedPosition => _tape.AdjustedPosition;
 
     public string MConfiguration => _mConfiguration;
-}
-
-public static class Extensions
-{
-    public static string AsString(this Tape tape)
-    {
-        ArgumentNullException.ThrowIfNull(tape);
-
-        var state = tape.GetState().Values;
-
-        var sb = new StringBuilder();
-
-        for (var i = 0; i < state.Length; i++)
-            sb.Append(state[i] ?? ' ');
-
-        return sb.ToString();
-    }
 }

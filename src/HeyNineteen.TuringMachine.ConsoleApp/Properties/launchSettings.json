@@ -6,7 +6,7 @@
     },
     "HeyNineteen.TuringMachine.ConsoleApp: AllPositiveIntegers": {
       "commandName": "Project",
-      "commandLineArgs": " -f C:\\dev\\HeyNineteen\\turing-machine\\tests\\HeyNineteen.TuringMachine.Library.Tests\\AllPositiveIntegers.machine -p 100 -s"
+      "commandLineArgs": " -f C:\\dev\\HeyNineteen\\turing-machine\\tests\\HeyNineteen.TuringMachine.Library.Tests\\AllPositiveIntegers.machine -p 100 -s -c 100"
     },
     "HeyNineteen.TuringMachine.ConsoleApp: ComputeAlternate0sAnd1s": {
       "commandName": "Project",

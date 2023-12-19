@@ -11,7 +11,7 @@ public class MachineTests
     [TestCase("ComputeIncreasinglyLongerRuns.machine", "ComputeIncreasinglyLongerRuns.state", 2, "f", 224)] // p.87
     [TestCase("AllPositiveIntegers.machine", "AllPositiveIntegers.state", 4, "i", 100)] // p.99
     [TestCase("SquareRootOf2.machine", "SquareRootOf2.state", 28, "add-zero", 100000)] // p.102
-    public void Test(string machineFile, string stateFile, int expectectedHeadPosition, string expectedMConfiguration, int iterations)
+    public void Test(string machineFile, string stateFile, int expectedHeadPosition, string expectedMConfiguration, int iterations)
     {
         var input = ResourceHelpers.GetResourceAsString(machineFile, Assembly.GetExecutingAssembly());
         var expectedTapeValues = ResourceHelpers.GetResourceAsString(stateFile, Assembly.GetExecutingAssembly());
@@ -28,8 +28,8 @@ public class MachineTests
         FileHelpers.WriteToTempFile(machineFile, input);
         FileHelpers.WriteToTempFile(stateFile, expectedTapeValues);
 
-        machine.State.TapeValues.Should().Be(expectedTapeValues);
-        machine.State.TapePosition.Should().Be(expectectedHeadPosition);
+        machine.State.TapeAdjustedValues.ToString().Should().Be(expectedTapeValues);
+        machine.State.TapeAdjustedPosition.Should().Be(expectedHeadPosition);
         machine.State.MConfiguration.Should().Be(expectedMConfiguration);
     }
 }

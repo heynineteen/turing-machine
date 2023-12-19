@@ -4,6 +4,7 @@ using CommandLine;
 using Library;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading;
 
@@ -35,6 +36,7 @@ class Program
             .WithParsed(RunOptions);
     }
 
+    [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
     public void RunOptions(Options options)
     {
         var inputFile = options.InputFile;
@@ -46,8 +48,8 @@ class Program
         var pauseInterval = Math.Max(options.PauseInterval, 0);
 
         Action outputAction = options.KeepHistory
-            ? () => { WriteNewLine(++counter, machine.State); }
-            : () => { WriteFromStartOfSameLine(++counter, machine.State); };
+            ? () => { Write(counter, machine.State); }
+            : () => { Overwrite(counter, machine.State); };
 
         if (options.ShowParseTree)
             Console.WriteLine(tree);
@@ -55,6 +57,7 @@ class Program
         while (counter < options.StepCount)
         {
             machine.Tick();
+            counter++;
             outputAction();
 
             if (options.StepThrough)
@@ -66,22 +69,21 @@ class Program
         Console.WriteLine();
     }
 
-    public static void WriteNewLine(int count, CompleteConfiguration state)
+    public static void Write(int count, CompleteConfiguration state)
     {
         Console.WriteLine(MetaDataText(count, state));
         Console.WriteLine(TapeValuesText(state));
     }
 
-    private static Func<int, CompleteConfiguration, string> MetaDataText = (count, state) =>
+    private static readonly Func<int, CompleteConfiguration, string> MetaDataText = (count, state) =>
         $"StepCount: {count}, MConfiguration: {state.MConfiguration}";
 
-    private static Func<CompleteConfiguration, string> TapeValuesText = (state) =>
-        TextWithIndexInCentre(state.TapeValues, state.TapePosition);
+    private static readonly Func<CompleteConfiguration, string> TapeValuesText = state =>
+        TextWithIndexInCentre(state.TapeAdjustedValues, state.TapeAdjustedPosition);
 
-    public static string Blank = string.Empty;
     public static bool IsFirstWrite = true;
 
-    public static void WriteFromStartOfSameLine(int count, CompleteConfiguration state)
+    public static void Overwrite(int count, CompleteConfiguration state)
     {
         var moveUp = !IsFirstWrite ? MoveUp(1) : null;
         IsFirstWrite = false;
@@ -96,24 +98,24 @@ class Program
 
     private const string Escape = "\u001b";
     private const string ClearLine = $"{Escape}[2K";
-    private static Func<int, string> MoveUp = positions => $"{Escape}[{positions}A";
-    private static Func<int, string> MoveDown = positions => $"{Escape}[{positions}B";
-    private static Func<int, string> MoveRight = positions => $"{Escape}[{positions}C";
-    private static Func<int, string> MoveLeft = positions => $"{Escape}[{positions}D";
-    private static string MoveStartLine = MoveLeft(1000);
+    private static readonly Func<int, string> MoveUp = positions => $"{Escape}[{positions}A";
+    private static readonly Func<int, string> MoveDown = positions => $"{Escape}[{positions}B";
+    private static readonly Func<int, string> MoveRight = positions => $"{Escape}[{positions}C";
+    private static readonly Func<int, string> MoveLeft = positions => $"{Escape}[{positions}D";
+    private static readonly string MoveStartLine = MoveLeft(1000);
     private const string Reversed = $"{Escape}[7m";
     private const string Reset = $"{Escape}[0m";
 
-    private static string TextWithIndexInCentre(string text, int index)
+    private static string TextWithIndexInCentre(ReadOnlySpan<char> text, int index)
     {
         var leftOffset = index;
         var horizontalCentre = HorizontalCentrePosition();
         var startPosition = horizontalCentre - leftOffset;
         var truncateStart = Math.Max(Math.Abs(Math.Min(startPosition, 0)), 0);
 
-        var firstPart = text.Substring(truncateStart, index - truncateStart);
+        var firstPart = text.Slice(truncateStart, index - truncateStart);
         var centrePart = text[index];
-        var lastPart = text.Substring(index + 1, Math.Min(horizontalCentre - 1, text.Length - (index + 1)));
+        var lastPart = text.Slice(index + 1, Math.Min(horizontalCentre - 1, text.Length - (index + 1)));
 
         var setStartPosition = startPosition > 0 ? MoveRight(startPosition) : String.Empty;
 
