@@ -24,6 +24,9 @@ public class Options
     [Option('t', "tree", Default = false, HelpText = "Output the parse tree of the input.")]
     public bool ShowParseTree { get; set; }
 
+    [Option('q', "quietMode", Default = false, HelpText = "Do not output intermediate machine state to the console.")]
+    public bool QuietMode { get; set; }
+
     [Usage(ApplicationAlias = "HeyNineteen.TuringMachine.ConsoleApp.exe")]
     public static IEnumerable<Example> Examples =>
         new List<Example>
@@ -33,6 +36,7 @@ public class Options
             new ("Have machine pause for 500ms after each step", new Options { InputFile = "my.machine", PauseInterval = 500 }),
             new ("Have machine wait for Enter key between each step", new Options { InputFile = "my.machine", StepThrough = true }),
             new ("Maintain history of machine state", new Options { InputFile = "my.machine", KeepHistory = true }),
-            new ("Output the parse tree of the input.", new Options { InputFile = "my.machine", ShowParseTree= true }),
+            new ("Output the parse tree of the input.", new Options { InputFile = "my.machine", ShowParseTree = true }),
+            new ("Do not output intermediate machine state to the console.", new Options { InputFile = "my.machine", QuietMode = true }),
         };
 }

@@ -50,9 +50,12 @@ class Program
         var counter = 0;
         var pauseInterval = Math.Max(options.PauseInterval, 0);
 
-        Action outputAction = options.KeepHistory
-            ? () => { Write(counter, machine.State); }
-            : () => { Overwrite(counter, machine.State); };
+        Action outputAction = options switch
+        {
+            { QuietMode: true } => () => { },
+            { KeepHistory: true } => () => { Write(counter, machine.State); },
+            _ => () => { Overwrite(counter, machine.State); }
+        };
 
         if (options.ShowParseTree)
             Console.WriteLine(tree);
@@ -68,6 +71,9 @@ class Program
             else
                 Thread.Sleep(pauseInterval);
         }
+
+        if(options.QuietMode)
+            Write(counter, machine.State);
 
         Console.WriteLine();
 
