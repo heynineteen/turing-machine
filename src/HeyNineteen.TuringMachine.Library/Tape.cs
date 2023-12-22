@@ -12,6 +12,10 @@ public class Tape
 
     private char[] _buffer = Enumerable.Repeat(DefaultValue, DefaultCapacity).ToArray();
 
+    private bool _isDirty = false;
+    private int _lowestRelevantPosition = 0;
+    private int _highestRelevantPosition = 0;
+
     public int Position { get; private set; }
 
     /// <summary>
@@ -25,7 +29,14 @@ public class Tape
     /// </summary>
     public ReadOnlySpan<char> Values => new(_buffer);
 
-    public int AdjustedPosition => Position - GetLowestRelevantPosition();
+    public int AdjustedPosition
+    {
+        get
+        {
+            RefreshMetaDataIfDirty();
+            return Position - _lowestRelevantPosition;
+        }
+    }
 
     /// <summary>
     /// Values in the internal buffer adjusted to only include
@@ -42,9 +53,8 @@ public class Tape
     {
         get
         {
-            var lowestRelevantPosition = GetLowestRelevantPosition();
-            var highestRelevantPosition = GetHighestRelevantPosition();
-            return new(_buffer, lowestRelevantPosition, highestRelevantPosition - lowestRelevantPosition + 1);
+            RefreshMetaDataIfDirty();
+            return new(_buffer, _lowestRelevantPosition, _highestRelevantPosition - _lowestRelevantPosition + 1);
         }
     }
 
@@ -81,7 +91,7 @@ public class Tape
         _buffer = newBuffer;
     }
 
-    private int GetLowestRelevantPosition()
+    private int CalculateLowestRelevantPosition()
     {
         var lowestRelevantPosition = Array.FindIndex(_buffer, IsRelevantValue);
 
@@ -91,28 +101,50 @@ public class Tape
         return Math.Min(lowestRelevantPosition, Position);
     }
 
-    private int GetHighestRelevantPosition()
+    private int CalculateHighestRelevantPosition()
     {
         var highestRelevantPosition = Array.FindLastIndex(_buffer, IsRelevantValue);
 
         return Math.Max(highestRelevantPosition, Position);
     }
 
+    private void RefreshMetaDataIfDirty()
+    {
+        if(_isDirty)
+            RefreshMetaData();
+    }
+
+    private void RefreshMetaData()
+    {
+        _lowestRelevantPosition = CalculateLowestRelevantPosition();
+        _highestRelevantPosition = CalculateHighestRelevantPosition();
+    }
+
     public void MoveLeft()
     {
         Position--;
         EnsureCapacity();
+        _isDirty = true;
     }
 
     public void MoveRight()
     {
         Position++;
         EnsureCapacity();
+        _isDirty = true;
     }
 
-    public void Erase() => _buffer[Position] = DefaultValue;
+    public void Erase()
+    {
+        _buffer[Position] = DefaultValue;
+        _isDirty = true;
+    }
 
-    public void Print(char value) => _buffer[Position] = value;
+    public void Print(char value)
+    {
+        _buffer[Position] = value;
+        _isDirty = true;
+    }
 
     public char? Read() => _buffer[Position] == DefaultValue ? null : _buffer[Position];
 }
