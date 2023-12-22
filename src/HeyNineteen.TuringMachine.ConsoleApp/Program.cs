@@ -8,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading;
 using static ConsoleX;
+using static FileX;
 
 
 class Program
@@ -69,5 +70,7 @@ class Program
         }
 
         Console.WriteLine();
+
+        WriteToFile(counter, machine);
     }
 }
