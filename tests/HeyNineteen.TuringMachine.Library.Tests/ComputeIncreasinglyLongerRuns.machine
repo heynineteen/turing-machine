@@ -1,4 +1,6 @@
-﻿b -> anyOrNone     -> Pe,R,Pe,R,P0,R,R,P0,L,L -> o;
+﻿// p.87
+
+b -> anyOrNone     -> Pe,R,Pe,R,P0,R,R,P0,L,L -> o;
 
 o -> 1             -> R,Px,L,L,L              -> o;
 o -> 0             ->                         -> q;
